@@ -22,9 +22,6 @@ namespace MvcWebApi.Tests.Controllers
     {
         ISessionFactory _sessionFactory;
 
-         [AssemblyInitialize()]
-        public static void AssemblyInit(TestContext context) {}
-
         [ClassInitialize()]
         public static void ClassInit(TestContext context) 
         {
@@ -42,9 +39,6 @@ namespace MvcWebApi.Tests.Controllers
 
         [ClassCleanup()]
         public static void ClassCleanup() {}
-
-        [AssemblyCleanup()]
-        public static void AssemblyCleanup() {}
 
         //TODO: Use a diferent database for test
         //   -> TestcaseSource
