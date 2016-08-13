@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace RateIT.Example.DalMappings
 {
+    //TODO: 
     public static class FluentNHibernateHelper
     {
         public static ISessionFactory CreateSessionFactory()

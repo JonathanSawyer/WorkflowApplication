@@ -81,10 +81,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="GeneratedORMFiles\BL.User.hbm.xml" />
-    <Content Include="GeneratedORMFiles\BL.Workflow.EntityWorkflow`1[[BL.User, BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].hbm.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.102.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.102.0\build\net45\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
