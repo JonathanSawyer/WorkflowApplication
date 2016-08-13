@@ -12,7 +12,6 @@ namespace BL.Workflow
         {
             WorkflowStatus  = Workflow.WorkflowStatus.Pending;
             WorkflowType    = WorkflowType.Create;
-            
         }
     }
 }

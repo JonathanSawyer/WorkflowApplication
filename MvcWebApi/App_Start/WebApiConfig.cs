@@ -33,6 +33,7 @@ namespace MvcWebApi.App_Start
             var container = new UnityContainer();
             container.RegisterInstance(typeof(ISessionFactory), sessionFactory);
             container.RegisterType<IEntityService<User>, UserService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IWorkflowService<User>, WorkflowService<User>>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
 
         }

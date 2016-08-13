@@ -1,4 +1,5 @@
-﻿using Service;
+﻿using BL;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,12 @@ using System.Web.Http;
 
 namespace MvcWebApi.Controllers
 {
-    public class UserController : ApiController
+    //Generic Entity Controller
+    public class UserControllerr : ApiController
     {
         IEntityService<BL.User> _userService;
 
-        public UserController(UserService userService)
+        public UserControllerr(UserService userService)
         {
             _userService = userService;
         }

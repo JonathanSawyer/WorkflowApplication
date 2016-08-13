@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace RateIT.Example.DalMappings
 {
+    //TODO: Remove redundancy
     public class UserBaseClassMap : ClassMap<EntityWorkflow<BL.User>>
     {
         public UserBaseClassMap()
@@ -27,7 +28,10 @@ namespace RateIT.Example.DalMappings
         public CreateUserMap()
         {
             DiscriminatorValue(WorkflowType.Create);
-            Map(x => x.Name, "Name");
+            Component(x => x.UserData, m =>
+            {
+                m.Map(x => x.Name, "Name");
+            });
         }
     }
 
@@ -36,7 +40,10 @@ namespace RateIT.Example.DalMappings
         public DeleteUserMap()
         {
             DiscriminatorValue(WorkflowType.Delete);
-            Map(x => x.Name, "Name");
+            Component(x => x.UserData, m =>
+            {
+                m.Map(x => x.Name, "Name");
+            });
         }
     }
 
@@ -45,7 +52,10 @@ namespace RateIT.Example.DalMappings
         public UpdateUserMap()
         {
             DiscriminatorValue(WorkflowType.Update);
-            Map(x => x.Name, "Name");
+            Component(x => x.UserData, m =>
+            {
+                m.Map(x => x.Name, "Name");
+            });
         }
     }
 }

@@ -8,7 +8,6 @@ namespace BL.Workflow
 {
     public abstract class EntityWorkflow<T> : Entity<int>
     {
-        //public virtual T WorkflowData { get; set; }
         public virtual T Owner { get; set; }
         public EntityWorkflow()
         {}
@@ -19,14 +18,20 @@ namespace BL.Workflow
         public virtual WorkflowType   WorkflowType   { get; set; }
         public virtual WorkflowStatus WorkflowStatus { get; set; }
 
-        protected virtual void Approve()
+        public virtual void Approve()
         {
-            WorkflowStatus = WorkflowStatus.Approved;
+            if (WorkflowStatus == Workflow.WorkflowStatus.Pending)
+                WorkflowStatus = WorkflowStatus.Approved;
+            else
+                throw new UnexpectedWorkflowCondition();
         }
 
-        protected virtual void Reject()
+        public virtual void Reject()
         {
-            WorkflowStatus = WorkflowStatus.Rejected;
+            if (WorkflowStatus == Workflow.WorkflowStatus.Pending)
+                WorkflowStatus = WorkflowStatus.Rejected;
+            else
+                throw new UnexpectedWorkflowCondition();
         }
     }
 }

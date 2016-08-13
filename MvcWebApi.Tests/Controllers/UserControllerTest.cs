@@ -68,7 +68,7 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
 
-            UserController controller = new UserController(new UserService(_sessionFactory));
+            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
             IList<BL.User> result = controller.Get();
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count());
@@ -93,7 +93,7 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
 
-            UserController controller = new UserController(new UserService(_sessionFactory));
+            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
 
             User result = controller.Get(user.Id);
 
@@ -107,7 +107,7 @@ namespace MvcWebApi.Tests.Controllers
             {
                 Name = "Some Name"
             };
-            UserController controller = new UserController(new UserService(_sessionFactory));
+            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
             controller.Post(user);
 
             CreateUserWorkflow workflow;
@@ -122,7 +122,7 @@ namespace MvcWebApi.Tests.Controllers
             }
             Assert.IsNotNull(workflow);
             Assert.IsNull(workflow.Owner);
-            Assert.AreEqual("Some Name", workflow.Name);
+            Assert.AreEqual("Some Name", workflow.UserData.Name);
             Assert.AreEqual(WorkflowStatus.Pending, workflow.WorkflowStatus);
             Assert.AreEqual(WorkflowType.Create, workflow.WorkflowType);
         }
@@ -143,7 +143,7 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
             user.Name = "Updated Value";
-            UserController controller = new UserController(new UserService(_sessionFactory));
+            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
             controller.Post(user);
 
             UpdateUserWorkflow workflow;
@@ -160,7 +160,7 @@ namespace MvcWebApi.Tests.Controllers
             Assert.IsNotNull(workflow.Owner);
             Assert.AreEqual(user.Id, workflow.Owner.Id);
             Assert.AreEqual("Some Name", workflow.Owner.Name);
-            Assert.AreEqual("Updated Value", workflow.Name);
+            Assert.AreEqual("Updated Value", workflow.UserData.Name);
             Assert.AreEqual(WorkflowStatus.Pending, workflow.WorkflowStatus);
             Assert.AreEqual(WorkflowType.Update, workflow.WorkflowType);
         }
@@ -181,7 +181,7 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
 
-            UserController controller = new UserController(new UserService(_sessionFactory));
+            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
             UserServiceResult result = controller.Delete(user.Id);
             Assert.AreEqual(UserServiceResult.Success, result);
             
