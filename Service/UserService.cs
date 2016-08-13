@@ -1,4 +1,5 @@
 ﻿using BL;
+using BL.Workflow;
 using NHibernate;
 using RateIT.Example.DalMappings;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
+    //TODO: Stale Data
     public enum UserServiceResult {Success, StaleData }
     public class UserService : IEntityService<BL.User>
     {
@@ -31,7 +33,17 @@ namespace Service
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(item);
+                    EntityWorkflow<BL.User> workflow;
+                    if (item.Id > 0)
+                    {
+                        workflow = new UpdateUserWorkflow(item);
+                    }
+                    else
+                    {
+                        workflow = new CreateUserWorkflow(item);
+                    }
+                    
+                    session.Save(workflow);
                     transaction.Commit();
                 }
             }
@@ -48,11 +60,7 @@ namespace Service
                     if(user.Status != EntityStatus.None)
                         return UserServiceResult.StaleData;
 
-                    BL.Workflow.Delete<User> deleteWorkflow = new BL.Workflow.Delete<User>(user);
-                    deleteWorkflow.Item = user;
-                    user.Status         = EntityStatus.PendingDelete;
-                    user.Workflows.Add(deleteWorkflow);
-
+                    DeleteUserWorkflow deleteWorkflow = new DeleteUserWorkflow(user);
                     session.Save(deleteWorkflow);
                     session.SaveOrUpdate(user);
                     transaction.Commit();

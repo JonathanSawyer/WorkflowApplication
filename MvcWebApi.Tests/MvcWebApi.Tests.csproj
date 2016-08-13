@@ -9,8 +9,8 @@
     <ProjectGuid>{9ED22A02-D65F-48F6-9E2C-453774F7F10D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcApplication1.Tests</RootNamespace>
-    <AssemblyName>MvcApplication1.Tests</AssemblyName>
+    <RootNamespace>MvcWebApi.Tests</RootNamespace>
+    <AssemblyName>MvcWebApi.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -147,8 +147,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\UserControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ValuesControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -169,7 +169,7 @@
       <Project>{7b6cc754-0cd5-4f83-a783-7ea6242c799e}</Project>
       <Name>Libs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MvcWebApi\RateIT.WebApi.csproj">
+    <ProjectReference Include="..\MvcWebApi\MvcWebApi.csproj">
       <Project>{8CD84E3C-5510-4F40-8605-322DFFE10638}</Project>
       <Name>RateIT.WebApi</Name>
     </ProjectReference>

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
 
-namespace MvcApplication1.App_Start
+namespace MvcWebApi.App_Start
 {
     public class UnityResolver : IDependencyResolver
     {

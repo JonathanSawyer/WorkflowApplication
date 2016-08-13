@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL.Workflow
 {
-    public class Update<T> : EntityWorkflow<T> where T : MyEntity<T>
+    public abstract class Update<T> : EntityWorkflow<T> where T : MyEntity<T>
     {
         public Update()
         {
@@ -18,8 +18,9 @@ namespace BL.Workflow
             if (item.Status != EntityStatus.None)
                 throw new UnexpectedWorkflowCondition();
 
-            Item = item;
+            Owner = item;
             item.Status = EntityStatus.PendingUpdate;
+            item.Workflows.Add(this);
             WorkflowStatus = Workflow.WorkflowStatus.Pending;
             WorkflowType = WorkflowType.Update;
         }

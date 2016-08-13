@@ -1,6 +1,5 @@
 ﻿using BL;
 using Microsoft.Practices.Unity;
-using MvcApplication1.App_Start;
 using NHibernate;
 using RateIT.Example.DalMappings;
 using Service;
@@ -9,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace MvcApplication1
+namespace MvcWebApi.App_Start
 {
     public static class WebApiConfig
     {

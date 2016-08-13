@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace MvcApplication1.Controllers
+namespace MvcWebApi.Controllers
 {
     public class UserController : ApiController
     {
@@ -36,9 +36,9 @@ namespace MvcApplication1.Controllers
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        public UserServiceResult Delete(int id)
         {
-            _userService.Delete(id);
+            return _userService.Delete(id);
         }
     }
 }

@@ -16,33 +16,36 @@ namespace RateIT.Example.DalMappings
             Table("UserWorkflow");
             DiscriminateSubClassesOnColumn("Type");
             Id(x => x.Id).GeneratedBy.Identity();
-            Map(x => x.WorkflowStatus, "Status");
-            Map(x => x.WorkflowType, "Type").ReadOnly();
-            References(x => x.Item).Column("UserId");
+            Map(x => x.WorkflowStatus,    "Status");
+            Map(x => x.WorkflowType,      "Type").ReadOnly();
+            References(x => x.Owner).Column("UserId");
         }
     }
 
-    public class CreateUserMap : SubclassMap<Create<BL.User>>
+    public class CreateUserMap : SubclassMap<CreateUserWorkflow>
     {
         public CreateUserMap()
         {
             DiscriminatorValue(WorkflowType.Create);
+            Map(x => x.Name, "Name");
         }
     }
 
-    public class DeleteUserMap : SubclassMap<Delete<BL.User>>
+    public class DeleteUserMap : SubclassMap<DeleteUserWorkflow>
     {
         public DeleteUserMap()
         {
             DiscriminatorValue(WorkflowType.Delete);
+            Map(x => x.Name, "Name");
         }
     }
 
-    public class UpdateUserMap : SubclassMap<Update<BL.User>>
+    public class UpdateUserMap : SubclassMap<UpdateUserWorkflow>
     {
         public UpdateUserMap()
         {
             DiscriminatorValue(WorkflowType.Update);
+            Map(x => x.Name, "Name");
         }
     }
 }

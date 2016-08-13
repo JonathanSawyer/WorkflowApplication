@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BL.Workflow
 {
     //Workflows are idempotent
-    public class Delete<T> : EntityWorkflow<T> where T : MyEntity<T>
+    public abstract class Delete<T> : EntityWorkflow<T> where T : MyEntity<T>
     {
         public Delete()
         {}
@@ -18,6 +18,9 @@ namespace BL.Workflow
             if(item.Status != EntityStatus.None)
                 throw new UnexpectedWorkflowCondition();
             
+            Owner = item;
+            item.Status = EntityStatus.PendingDelete;
+            item.Workflows.Add(this);
             WorkflowStatus  = Workflow.WorkflowStatus.Pending;
             WorkflowType    = WorkflowType.Delete;
         }
