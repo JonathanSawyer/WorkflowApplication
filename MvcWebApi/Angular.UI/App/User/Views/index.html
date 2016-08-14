@@ -1,5 +1,7 @@
 ﻿<div class="span12">
-    <span ng-if="users.data.length ==0">Displaying ({{users.data.length}}) users</span>
+    <span ng-show="loading"><i class="fa fa-circle-o-notch fa-spin"></i> loading ...</span>
+    <br />
+    <span ng-if="users.data.length == 0">Displaying ({{users.data.length}}) users</span>
     <h1 ng-if="users.data.length > 0">Live Records and History</h1>
     <table ng-if="users.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
@@ -96,8 +98,14 @@
             </tr>
         </tbody>
     </table>
+    <br />
+    <br />
+    <br />
     <span>This is an indempotent workflow system. Only a single set of changes at a time.</span>
     <ul>
+        <li>Approved Delete requests hard delete the record from the owner. We audit this in the Workflow (Can be changed to archive if desired).</li>
+        <li>Create requests dont end up in owner table until they are approved.</li>
+        <li>Update requests dont modify the owner until they are approved.</li>
         <li>BL\Workflow contains generic classes for an update, create and delete workflow.</li>
         <li>BL UserWorkflow.cs and User.cs are example payloads</li>
         <li>The Service Layer is injected into the Web Api Controllers.</li>
@@ -106,6 +114,8 @@
     </ul>
     <span>Future Improvements.</span>
     <ul>
-        <li>BL\Workflow contains generic classes for an update, create and delete workflow.</li>
+        <li>Manage multiple users trying to change record (UI as workflow wont allow it but throws a nasty exception).</li>
+        <li>Record level locking of payloads.</li>
+        <li>Within a business setting you wouldnt have a maker approving there own changes</li>
     </ul>
 </div>

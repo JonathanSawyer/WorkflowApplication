@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NHibernate.Linq;
 
 namespace Service
 {
@@ -21,13 +22,9 @@ namespace Service
         {
             using (var session = _sessionFactory.OpenSession())
             {
-                User userAlias = null;
-                BL.Workflow.EntityWorkflow<T> workflowAlias = null;
-                return session.QueryOver(() => workflowAlias)
-                                  .Left.JoinAlias(() => workflowAlias.Owner, () => userAlias)
-                                  .Where(() => workflowAlias.Id == id)
-                                  .List()
-                                  .FirstOrDefault();
+                return session.Query<BL.Workflow.EntityWorkflow<T>>()
+                              .Fetch(x => x.Owner)
+                              .Where(x =>x.Id == id).FirstOrDefault();
             }
         }
 
@@ -45,14 +42,10 @@ namespace Service
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    User userAlias = null;
-                    BL.Workflow.EntityWorkflow<T> workflowAlias = null;
                     //TODO: Needs to have an upgrade lock
-                    BL.Workflow.EntityWorkflow<T> workflow = session.QueryOver(() => workflowAlias)
-                                      .Left.JoinAlias(() => workflowAlias.Owner, () => userAlias)
-                                      .Where(() => workflowAlias.Id == id)
-                                      .List()
-                                      .FirstOrDefault();
+                    BL.Workflow.EntityWorkflow<T> workflow = session.Query<BL.Workflow.EntityWorkflow<T>>()
+                              .Fetch(x => x.Owner)
+                              .Where(x => x.Id == id).FirstOrDefault();
 
                     workflow.Approve();
 

@@ -6,15 +6,21 @@
 {
     $scope.users = [];
     $scope.userWorkflows = [];
-    
+    $scope.loading = true;
+
     $scope.load = function()
     {
-        userService.list().then(function (users) {
+        $scope.loading = true;
+        userService.list().then(function (users)
+        {
             $scope.users = users;
+            $scope.loading = false;
         });
 
-        userWorkflowService.list().then(function (userWorkflows) {
+        userWorkflowService.list().then(function (userWorkflows)
+        {
             $scope.userWorkflows = userWorkflows;
+            $scope.loading = false;
         });
     }
     $scope.load();
@@ -55,6 +61,10 @@
     $scope.save = function ()
     {
         $scope.user.edit = undefined;
+
+        if ($scope.user.Id == 0)
+            $scope.users.data.splice($scope.users.data.length - 1, 1);
+     
         userService.save($scope.user).then(function (userWorkflows)
         {
             $scope.userWorkflows = userWorkflows;
