@@ -22,13 +22,22 @@
         $scope.pageMode.edit = false;
     }
 
-    $scope.pageMode.setEdit = function ()
+    $scope.pageMode.setEdit = function ($index)
     {
-        $scope.user =
+        if($index == undefined)
         {
-            Name: "",
-            Surname: ""
-        };
+            $scope.user =
+            {
+                Id: 0,
+                Name: "",
+                Surname: ""
+            };
+        }
+        else
+        {
+            $scope.user = $scope.users.data[$index];
+        }
+
         $scope.pageMode.list = false;
         $scope.pageMode.edit = true;
     }
@@ -40,20 +49,29 @@
         userService.save($scope.user).then(function (userWorkflows)
         {
             $scope.userWorkflows = userWorkflows;
+            userService.list().then(function (users) {
+                $scope.users = users;
+                $scope.pageMode.setList();
+            });
         });
-        $scope.pageMode.setList();
     };
 
     $scope.approve = function (id)
     {
-        userWorkflowService.approve($scope.userWorkflows.data[id].Id).then(function (userWorkflows)
-        {
-            $scope.userWorkflows = userWorkflows;
-        });
+        userWorkflowService.approve($scope.userWorkflows.data[id].Id)
+                           .then(function (response)
+                           {
+                               $scope.userWorkflows = response.userWorkflows;
+                               $scope.users = response.users;
+                           });
     };
     $scope.reject = function (id)
     {
-        //userWorkflowService.reject(id);
+        userWorkflowService.reject($scope.userWorkflows.data[id].Id)
+                           .then(function (response) {
+                               $scope.userWorkflows = response.userWorkflows;
+                               $scope.users = response.users;
+                           });
     };
 
 

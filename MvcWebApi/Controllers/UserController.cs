@@ -27,6 +27,7 @@ namespace MvcWebApi.Controllers
             return users.Select(
                 x => new
                 {
+                    Id   = x.Id,
                     Name = x.Name,
                     Surname = x.Surname,
                     Status = Enum.GetName(typeof(EntityStatus), x.Status)

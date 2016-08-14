@@ -6,35 +6,37 @@
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Status</th>
+                <th></th>
             </tr>
         </thead>
-        <tbody ng-repeat="user in users.data">
+        <tbody ng-repeat="user in users.data track by $index">
             <tr>
                 <td>{{user.Name}}</td>
                 <td>{{user.Surname}}</td>
                 <td>{{user.Status}}</td>
+                <td><a ng-if="user.Status == 'None'" href="#" ng-click="pageMode.setEdit($index)">edit</a></td>
             </tr>
         </tbody>
     </table>
-    <a href="#" ng-click="pageMode.setEdit()">New User</a>
+    <a href="#" ng-click="pageMode.setEdit()">new</a>
 
     <span ng-if="userWorkflows.data.length == 0">Displaying ({{userWorkflows.data.length}}) pending workflows</span>
     <table ng-if="userWorkflows.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
+                <th>Type</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Status</th>
-                <th>Type</th>
                 <th colspan="2"></th>
             </tr>
         </thead>
         <tbody ng-repeat="workflow in userWorkflows.data track by $index">
             <tr>
+                <td>{{workflow.Type}}</td>
                 <td>{{workflow.Name}}</td>
                 <td>{{workflow.Surname}}</td>
                 <td>{{workflow.Status}}</td>
-                <td>{{workflow.Type}}</td>
                 <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="approve($index)">approve</a></td>
                 <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="reject($index)">reject</a></td>
             </tr>

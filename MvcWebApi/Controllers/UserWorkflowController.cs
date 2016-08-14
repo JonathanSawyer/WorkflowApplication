@@ -24,7 +24,7 @@ namespace MvcWebApi.Controllers
         }
 
         // GET api/userworkflow
-        public dynamic Get()
+        public IEnumerable<object> Get()
         {
             IList<BL.Workflow.EntityWorkflow<User>> workflows = _workflowService.List();
             return from x in workflows

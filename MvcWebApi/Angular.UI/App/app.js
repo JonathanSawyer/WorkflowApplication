@@ -31,12 +31,35 @@ app.service('userWorkflowService', function ($http, $q) {
 
     this.approve = function(id)
     {
-        return $http.get("../api/userworkflow/approve/" + id).then(function ()
-        {
-            return $http.get("../api/userworkflow").then(function (response) {
-                return response;
+        return $http.get("../api/userworkflow/approve/" + id)
+            .then(function ()
+            {
+                return $q.all([$http.get("../api/userworkflow"),
+                               $http.get("../api/user")
+                        ]).then(function (data)
+                        {
+                            return
+                            {
+                                userWorkflows = data[0],
+                                users = data[1]
+                            };
+                        });
             });
-        });
         
+    }
+    this.reject = function (id) {
+        return $http.get("../api/userworkflow/reject/" + id)
+            .then(function () {
+                return $q.all([$http.get("../api/userworkflow"),
+                               $http.get("../api/user")
+                ]).then(function (data) {
+                    return
+                    {
+                        userWorkflows = data[0],
+                        users = data[1]
+                    };
+                });
+            });
+
     }
 });
