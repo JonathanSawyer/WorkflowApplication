@@ -3,11 +3,16 @@
 <head>
     <title>Angular Application</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Content/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="../Content/bootstrap-combined.css">
 </head>
 <body ng-app="MyApp" ng-controller="UserCtrl">
     <ng-include  src="'App/User/Views/index.html'"></ng-include>
     <ng-include  src="'App/User/Views/edit.html'"></ng-include>
     <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/jquery-1.8.3.js"></script>
+    <script src="../Scripts/angular-ui/ui-bootstrap.js"></script>
+    <script src="../Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
     <script src="App/app.js"></script>
     <script src="App/User/userCtrl.js"></script>
 </body>

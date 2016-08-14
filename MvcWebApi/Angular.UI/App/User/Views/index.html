@@ -1,20 +1,51 @@
-﻿<div ng-show="pageMode.list">
+﻿<div ng-show="pageMode.list" class="span12">
     <span ng-if="users.data.length ==0">Displaying ({{users.data.length}}) users</span>
     <table ng-if="users.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Status</th>
                 <th></th>
             </tr>
         </thead>
-        <tbody ng-repeat="user in users.data track by $index">
-            <tr>
+        <tbody data-ng-repeat="user in users.data track by $index" data-ng-switch on="dataCollapse[$index]">
+            <tr title="Click to view history.">
+                <td><a href="#" data-ng-click="history($index)">histroy</a></td>
                 <td>{{user.Name}}</td>
                 <td>{{user.Surname}}</td>
                 <td>{{user.Status}}</td>
                 <td><a ng-if="user.Status == 'None'" href="#" ng-click="pageMode.setEdit($index)">edit</a></td>
+            </tr>
+            <tr data-ng-switch-when="true">
+                <td colspan="5">
+                    <div class="span9">
+                        <div class="pull-left">
+                            <table class="table table-hover table-condensed table-striped">
+                                <thead class="levelTwo">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Surname</th>
+                                        <th>Status</th>
+                                        <th colspan="2"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="workflow in user.Workflows">
+                                        <td>{{workflow.Type}}</td>
+                                        <td>{{workflow.Name}}</td>
+                                        <td>{{workflow.Surname}}</td>
+                                        <td>{{workflow.Status}}</td>
+                                        <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="approve(workflow.Id)">approve</a></td>
+                                        <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="reject(workflow.Id)">reject</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -37,8 +68,8 @@
                 <td>{{workflow.Name}}</td>
                 <td>{{workflow.Surname}}</td>
                 <td>{{workflow.Status}}</td>
-                <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="approve($index)">approve</a></td>
-                <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="reject($index)">reject</a></td>
+                <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="approve(workflow.Id)">approve</a></td>
+                <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="reject(workflow.Id)">reject</a></td>
             </tr>
         </tbody>
     </table>

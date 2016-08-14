@@ -9,19 +9,13 @@ table {
     padding: 0px;
 }
 
-table td[rowspan]
-{
-    vertical-align: middle;
-    text-align: left;
-}
-
 .levelOne {
     background-color: #006DCC;
     color: white;
 }
 .levelTwo {
-    background-color: #006DCC;
-    color: white;
+    background-color: #FF8C00;
+    color: black;
 }
 
 
@@ -39,13 +33,12 @@ tr th:last-child {
 .clickableRow {
     cursor: pointer;
 }
-
 p, textarea {
     font-variant: small-caps !important;
     text-rendering: auto;
 }
 td, th {
-    font-size: 10pt;
+    font-size: 8pt;
 }
 table {
     padding: 0px;

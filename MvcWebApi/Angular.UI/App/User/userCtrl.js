@@ -58,7 +58,7 @@
 
     $scope.approve = function (id)
     {
-        userWorkflowService.approve($scope.userWorkflows.data[id].Id)
+        userWorkflowService.approve(id)
                            .then(function (response)
                            {
                                $scope.userWorkflows = response.userWorkflows;
@@ -67,11 +67,47 @@
     };
     $scope.reject = function (id)
     {
-        userWorkflowService.reject($scope.userWorkflows.data[id].Id)
+        userWorkflowService.reject(id)
                            .then(function (response) {
                                $scope.userWorkflows = response.userWorkflows;
                                $scope.users = response.users;
                            });
+    };
+    $scope.tableRowExpanded = false;
+    $scope.tableRowIndexExpandedCurr = "";
+    $scope.tableRowIndexExpandedPrev = "";
+
+    $scope.dataCollapseFn = function () {
+        $scope.dataCollapse = [];
+        for (var i = 0; i < $scope.users.data.length; i += 1) {
+            $scope.dataCollapse.push(false);
+        }
+    };
+
+    $scope.history = function (index) {
+        if (typeof $scope.dataCollapse === 'undefined') {
+            $scope.dataCollapseFn();
+        }
+
+        if ($scope.tableRowExpanded === false && $scope.tableRowIndexExpandedCurr === "") {
+            $scope.tableRowIndexExpandedPrev = "";
+            $scope.tableRowExpanded = true;
+            $scope.tableRowIndexExpandedCurr = index;
+            $scope.dataCollapse[index] = true;
+        }
+        else if ($scope.tableRowExpanded === true) {
+            if ($scope.tableRowIndexExpandedCurr === index) {
+                $scope.tableRowExpanded = false;
+                $scope.tableRowIndexExpandedCurr = "";
+                $scope.dataCollapse[index] = false;
+            } else {
+                $scope.tableRowIndexExpandedPrev = $scope.tableRowIndexExpandedCurr;
+                $scope.tableRowIndexExpandedCurr = index;
+                $scope.dataCollapse[$scope.tableRowIndexExpandedPrev] = false;
+                $scope.dataCollapse[$scope.tableRowIndexExpandedCurr] = true;
+            }
+        }
+
     };
 
 

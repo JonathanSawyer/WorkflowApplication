@@ -1,4 +1,5 @@
 ﻿using BL;
+using BL.Workflow;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,17 @@ namespace MvcWebApi.Controllers
                     Id   = x.Id,
                     Name = x.Name,
                     Surname = x.Surname,
-                    Status = Enum.GetName(typeof(EntityStatus), x.Status)
+                    Status = Enum.GetName(typeof(EntityStatus), x.Status),
+                    Workflows = from y in x.Workflows
+                                let userData = (IUserData)y
+                                select new
+                                {
+                                    Id = y.Id,
+                                    Name = userData.UserData.Name,
+                                    Surname = userData.UserData.Surname,
+                                    Type = Enum.GetName(typeof(WorkflowType), y.WorkflowType),
+                                    Status = Enum.GetName(typeof(WorkflowStatus), y.WorkflowStatus)
+                                }
                 }).ToList<dynamic>();
         }
 
