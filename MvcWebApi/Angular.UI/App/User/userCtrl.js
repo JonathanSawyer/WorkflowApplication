@@ -60,6 +60,7 @@
 
     $scope.save = function ()
     {
+        $scope.loading = true;
         $scope.user.edit = undefined;
 
         if ($scope.user.Id == 0)
