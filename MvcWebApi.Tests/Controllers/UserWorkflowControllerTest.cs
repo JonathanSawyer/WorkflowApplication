@@ -85,6 +85,7 @@ namespace MvcWebApi.Tests.Controllers
             Assert.AreEqual(WorkflowStatus.Approved, userWorkflow.WorkflowStatus);
             Assert.IsNotNull(userWorkflow.Owner);
             Assert.AreEqual(userWorkflow.UserData.Name, userWorkflow.Owner.Name);
+            Assert.AreEqual(userWorkflow.UserData.Surname, userWorkflow.Owner.Surname);
             Assert.AreEqual(EntityStatus.None, userWorkflow.Owner.Status);
         }
 
@@ -93,7 +94,8 @@ namespace MvcWebApi.Tests.Controllers
         {
             _userWorkflowController.Approve(1);
             User user = _userService.Get(1);
-            user.Name = "approve update";
+            user.Name    = "name update";
+            user.Surname = "surname update";
             _userService.Save(user);
             user = _userService.Get(1);
             _userWorkflowController.Approve(user.Workflows.Last().Id);
@@ -103,7 +105,8 @@ namespace MvcWebApi.Tests.Controllers
             Assert.AreEqual(WorkflowStatus.Approved, userWorkflow.WorkflowStatus);
             Assert.IsNotNull(userWorkflow.Owner);
             Assert.AreEqual(userWorkflow.UserData.Name, userWorkflow.Owner.Name);
-            Assert.AreEqual("approve update", userWorkflow.Owner.Name);
+            Assert.AreEqual("name update",    userWorkflow.Owner.Name);
+            Assert.AreEqual("surname update", userWorkflow.Owner.Surname);
             Assert.AreEqual(EntityStatus.None, userWorkflow.Owner.Status);
         }
 

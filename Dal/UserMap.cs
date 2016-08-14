@@ -15,6 +15,7 @@ namespace RateIT.Example.DalMappings
        {
            Id(x => x.Id).GeneratedBy.Identity();
            Map(x => x.Name);
+           Map(x => x.Surname);
            Map(x => x.Status);
            HasMany(x => x.Workflows)
                .KeyColumn("UserId")

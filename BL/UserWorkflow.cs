@@ -10,16 +10,19 @@ namespace BL
     public class UserData
     {
         public virtual string Name { get; set; }
+        public virtual string Surname { get; set; }
         public UserData()
         { }
         public void Set(User user)
         {
-            Name = user.Name;
+            Surname = user.Surname;
+            Name    = user.Name;
         }
 
         public void SetOwner(User owner)
         {
-            owner.Name = Name;
+            owner.Surname = Surname;
+            owner.Name    = Name;
         }
     }
     public class CreateUserWorkflow : BL.Workflow.Create<User>

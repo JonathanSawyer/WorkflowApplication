@@ -15,5 +15,6 @@ namespace BL
             Workflows = new List<EntityWorkflow<User>>();
         }
         public virtual string Name   { get; set; }
+        public virtual string Surname { get; set; }
     }
 }

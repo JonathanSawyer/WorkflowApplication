@@ -31,6 +31,7 @@ namespace RateIT.Example.DalMappings
             Component(x => x.UserData, m =>
             {
                 m.Map(x => x.Name, "Name");
+                m.Map(x => x.Surname, "Surname");
             });
         }
     }
@@ -43,6 +44,7 @@ namespace RateIT.Example.DalMappings
             Component(x => x.UserData, m =>
             {
                 m.Map(x => x.Name, "Name");
+                m.Map(x => x.Surname, "Surname");
             });
         }
     }
@@ -55,6 +57,7 @@ namespace RateIT.Example.DalMappings
             Component(x => x.UserData, m =>
             {
                 m.Map(x => x.Name, "Name");
+                m.Map(x => x.Surname, "Surname");
             });
         }
     }
