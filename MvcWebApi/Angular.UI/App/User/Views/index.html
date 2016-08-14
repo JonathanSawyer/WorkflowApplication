@@ -1,1 +1,18 @@
-﻿{{test}}
+﻿<div ng-show="pageMode.list">
+    <span ng-if="users.length ==0">Displaying ({{users.length}}) users</span>
+    <table ng-if="users.length > 0" class="table table-hover table-condensed table-striped">
+        <thead class="levelOne">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="user in users">
+            <tr>
+                <td>{{user.Name}}</td>
+                <td>{{user.Surame}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="#" ng-click="pageMode.setEdit()">New User</a>
+</div>
