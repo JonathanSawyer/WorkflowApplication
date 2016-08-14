@@ -1,12 +1,18 @@
-﻿angular.module('myApp.controllers').controller("UserCtrl", function ($scope, $http)
+﻿angular.module('myApp.controllers').controller("UserCtrl",
+    function ($scope,
+              $http,
+              userService,
+              userWorkflowService)
 {
-    $scope.test = "Hello World";
     $scope.users = [];
-    $scope.user =
-        {
-            Name: "",
-            Surname: ""
-        };
+    $scope.userWorkflows = [];
+    userService.list().then(function (users)
+    {
+        $scope.users = users;
+    });
+    userWorkflowService.list().then(function (userWorkflows) {
+        $scope.userWorkflows = userWorkflows;
+    });
 
     $scope.pageMode = {}
     $scope.pageMode.setList = function ()
@@ -17,23 +23,22 @@
 
     $scope.pageMode.setEdit = function ()
     {
+        $scope.user =
+        {
+            Name: "",
+            Surname: ""
+        };
         $scope.pageMode.list = false;
         $scope.pageMode.edit = true;
     }
 
     $scope.pageMode.setList();
 
-    $http.get("../api/user").success(function (users)
-    {
-        $scope.users = users;
-    });
-
     $scope.save = function()
     {
-        //TODO: Add response
-        $http.post("../api/user", $scope.user).success(function (user)
-        {
-            
+        userService.save($scope.user).then(function (userWorkflows) {
+            $scope.userWorkflows = userWorkflows;
         });
+        $scope.pageMode.setList();
     }
 });

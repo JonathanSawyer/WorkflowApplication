@@ -1,4 +1,5 @@
 ﻿using BL;
+using BL.Workflow;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -21,28 +22,38 @@ namespace MvcWebApi.Controllers
             _workflowService = workflowService;
             _userService     = userService;
         }
-        
-        // GET api/user
-        public IList<BL.Workflow.EntityWorkflow<User>> Get()
+
+        // GET api/userworkflow
+        public dynamic Get()
         {
-            return _workflowService.List();
+            IList<BL.Workflow.EntityWorkflow<User>> workflows = _workflowService.List();
+            return from x in workflows
+                   let userData = (IUserData)x
+                   select new
+                   {
+                       Name     = userData.UserData.Name,
+                       Surname  = userData.UserData.Surname,
+                       Type     = Enum.GetName(typeof(WorkflowType), x.WorkflowType),
+                       Status   = Enum.GetName(typeof(WorkflowStatus), x.WorkflowStatus)
+                   };
+                   
         }
 
-        // GET api/user/5
+        // GET api/userworkflow/5
         public BL.Workflow.EntityWorkflow<User> Get(int id)
         {
             return _workflowService.Get(id);
         }
 
         [HttpGet]
-        //[Route("api/workflow/approve")]
+        //[Route("api/userworkflow/approve")]
         public void Approve(int id)
         {
             _workflowService.Approve(id);
         }
 
         [HttpGet]
-        //[Route("api/workflow/approve")]
+        //[Route("api/userworkflow/approve")]
         public void Reject(int id)
         {
             _workflowService.Reject(id);
