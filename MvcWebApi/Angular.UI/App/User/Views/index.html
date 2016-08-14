@@ -1,8 +1,9 @@
 ﻿<div class="span12">
     <span ng-show="loading"><i class="fa fa-circle-o-notch fa-spin"></i> loading ...</span>
     <br />
-    <span ng-if="users.data.length == 0">Displaying ({{users.data.length}}) users</span>
+    <span ng-if="users.data.length == 0">Displaying ({{users.data.length}}) user(s)</span>
     <h1 ng-if="users.data.length > 0">Live Records and History</h1>
+    <span ng-if="users.data.length > 0">Displaying ({{users.data.length}}) live users</span>
     <table ng-if="users.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
@@ -65,9 +66,12 @@
             </tr>
         </tbody>
     </table>
-    <a href="#" ng-if="users.data[users.data.length - 1].edit == undefined" ng-click="edit()">new</a>
+    <button ng-enabled="users.data[users.data.length - 1].edit == undefined" ng-click="edit()" style="margin: 15px 15px 15px 0px; line-height: 1.2;">
+        <span>New User</span>
+    </button>
+
     <h1 ng-if="userWorkflows.data.length > 0">Workflows</h1>
-    <span ng-if="userWorkflows.data.length == 0">Displaying ({{userWorkflows.data.length}}) pending workflows</span>
+    <span ng-if="userWorkflows.data.length > 0">Displaying ({{userWorkflows.data.length}}) workflow(s)</span>
     <table ng-if="userWorkflows.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
