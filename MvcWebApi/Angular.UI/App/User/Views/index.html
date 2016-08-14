@@ -1,4 +1,4 @@
-﻿<div ng-show="pageMode.list" class="span12">
+﻿<div class="span12">
     <span ng-if="users.data.length ==0">Displaying ({{users.data.length}}) users</span>
     <table ng-if="users.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
@@ -13,10 +13,14 @@
         <tbody data-ng-repeat="user in users.data track by $index" data-ng-switch on="dataCollapse[$index]">
             <tr title="Click to view history.">
                 <td><a href="#" data-ng-click="history($index)">histroy</a></td>
-                <td>{{user.Name}}</td>
-                <td>{{user.Surname}}</td>
+                <td><span ng-if="!user.edit">{{user.Name}}</span>   <input ng-if="user.edit" id="name" type="text" ng-model="user.Name"></td>
+                <td><span ng-if="!user.edit">{{user.Surname}}</span><input ng-if="user.edit" id="surname" type="text" ng-model="user.Surname"></td>
                 <td>{{user.Status}}</td>
-                <td><a ng-if="user.Status == 'None'" href="#" ng-click="pageMode.setEdit($index)">edit</a></td>
+                <td>
+                    <a ng-if="user.Status == 'None' && !user.edit" href="#" ng-click="edit($index)">edit</a>
+                    <a ng-if="user.edit" href="#" ng-click="save()">save</a>
+                    <a ng-if="user.edit" href="#" ng-click="cancel()">cancel</a>
+                </td>
             </tr>
             <tr data-ng-switch-when="true">
                 <td colspan="8">
@@ -58,25 +62,34 @@
             </tr>
         </tbody>
     </table>
-    <a href="#" ng-click="pageMode.setEdit()">new</a>
+    <a href="#" ng-click="edit()">new</a>
 
     <span ng-if="userWorkflows.data.length == 0">Displaying ({{userWorkflows.data.length}}) pending workflows</span>
     <table ng-if="userWorkflows.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
+                <th colspan="4" style="text-align: center;">Request</th>
+                <th colspan="2" style="text-align: center;">Payload</th>
+                <th colspan="2"></th>
+            </tr>
+            <tr>
                 <th>Type</th>
+                <td>Requested On</td>
+                <td>Actioned On</td>
+                <th>Status</th>
                 <th>Name</th>
                 <th>Surname</th>
-                <th>Status</th>
                 <th colspan="2"></th>
             </tr>
         </thead>
-        <tbody ng-repeat="workflow in userWorkflows.data track by $index">
-            <tr>
+        <tbody>
+            <tr ng-repeat="workflow in userWorkflows.data track by $index">
                 <td>{{workflow.Type}}</td>
+                <td>{{workflow.MakerDateTime}}</td>
+                <td>{{workflow.ApproverDateTime}}</td>
+                <td>{{workflow.Status}}</td>
                 <td>{{workflow.Name}}</td>
                 <td>{{workflow.Surname}}</td>
-                <td>{{workflow.Status}}</td>
                 <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="approve(workflow.Id)">approve</a></td>
                 <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="reject(workflow.Id)">reject</a></td>
             </tr>

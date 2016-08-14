@@ -6,23 +6,20 @@
 {
     $scope.users = [];
     $scope.userWorkflows = [];
-    userService.list().then(function (users)
+    
+    $scope.load = function()
     {
-        $scope.users = users;
-    });
+        userService.list().then(function (users) {
+            $scope.users = users;
+        });
 
-    userWorkflowService.list().then(function (userWorkflows) {
-        $scope.userWorkflows = userWorkflows;
-    });
-
-    $scope.pageMode = {}
-    $scope.pageMode.setList = function ()
-    {
-        $scope.pageMode.list = true;
-        $scope.pageMode.edit = false;
+        userWorkflowService.list().then(function (userWorkflows) {
+            $scope.userWorkflows = userWorkflows;
+        });
     }
+    $scope.load();
 
-    $scope.pageMode.setEdit = function ($index)
+    $scope.edit = function ($index)
     {
         if($index == undefined)
         {
@@ -30,28 +27,37 @@
             {
                 Id: 0,
                 Name: "",
-                Surname: ""
+                Surname: "",
+                edit : true
             };
+            $scope.users.data.push($scope.user);
         }
         else
         {
-            $scope.user = $scope.users.data[$index];
+            for (var index = 0; index < $scope.users.data.length; index++)
+            {
+                if ($index == index)
+                {
+                    $scope.user = $scope.users.data[index];
+                }
+                $scope.users.data[index].edit = $index == index ? true : undefined;
+            }
         }
-
-        $scope.pageMode.list = false;
-        $scope.pageMode.edit = true;
     }
 
-    $scope.pageMode.setList();
+    $scope.cancel = function()
+    {
+        $scope.user.edit = undefined;
+    }
 
     $scope.save = function ()
     {
+        $scope.user.edit = undefined;
         userService.save($scope.user).then(function (userWorkflows)
         {
             $scope.userWorkflows = userWorkflows;
             userService.list().then(function (users) {
                 $scope.users = users;
-                $scope.pageMode.setList();
             });
         });
     };
@@ -61,16 +67,14 @@
         userWorkflowService.approve(id)
                            .then(function (response)
                            {
-                               $scope.userWorkflows = response.userWorkflows;
-                               $scope.users = response.users;
+                               $scope.load();
                            });
     };
     $scope.reject = function (id)
     {
         userWorkflowService.reject(id)
                            .then(function (response) {
-                               $scope.userWorkflows = response.userWorkflows;
-                               $scope.users = response.users;
+                               $scope.load();
                            });
     };
     $scope.tableRowExpanded = false;

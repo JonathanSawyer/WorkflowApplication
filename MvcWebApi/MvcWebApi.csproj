@@ -189,7 +189,6 @@
   <ItemGroup>
     <Content Include="Angular.UI\App\app.js" />
     <Content Include="Angular.UI\App\User\userCtrl.js" />
-    <Content Include="Angular.UI\App\User\Views\edit.html" />
     <Content Include="Angular.UI\App\User\Views\index.html" />
     <Content Include="Angular.UI\index.html" />
     <Content Include="Angular.UI\style.css" />
