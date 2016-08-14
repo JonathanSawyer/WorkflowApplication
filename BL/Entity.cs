@@ -7,12 +7,6 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public abstract class MyEntity<Entity> : Entity<int>
-    {
-        public virtual EntityStatus Status { get; set; }
-
-        public virtual IList<EntityWorkflow<Entity>> Workflows { get; set; }
-    }
     public abstract class Entity<TId>
     {
         public virtual TId Id { get; set; }
@@ -60,9 +54,6 @@ namespace BL
             if (Equals(Id, default(TId)))
                 return base.GetHashCode();
             return Id.GetHashCode();
-        }
-
-        //TODO: Remove from here
-        
+        }        
     }
 }

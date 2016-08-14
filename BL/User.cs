@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public class User : MyEntity<User>
+    public class User : PayloadEntity<User>
     {
         public User()
         {

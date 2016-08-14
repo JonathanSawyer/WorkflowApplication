@@ -10,7 +10,6 @@ using System.Web.Http;
 
 namespace MvcWebApi.Controllers
 {
-    //TODO: Chanehe return types to enumerable
     //Generic Entity Controller
     public class UserController : ApiController
     {
@@ -48,15 +47,9 @@ namespace MvcWebApi.Controllers
         }
 
         // GET api/user/5
-        public dynamic Get(int id)
+        public User Get(int id)
         {
-            User user =_userService.Get(id);
-            return new
-            {
-                Name = user.Name,
-                Surname = user.Surname,
-                Status = Enum.GetName(typeof(EntityStatus), user.Status)
-            };
+            return _userService.Get(id);
         }
 
         // POST api/user

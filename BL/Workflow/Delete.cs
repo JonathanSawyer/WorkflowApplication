@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BL.Workflow
 {
     //Workflows are idempotent
-    public abstract class Delete<T> : EntityWorkflow<T> where T : MyEntity<T>
+    public abstract class Delete<T> : EntityWorkflow<T> where T : PayloadEntity<T>
     {
         public Delete()
         {}

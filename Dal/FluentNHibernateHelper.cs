@@ -13,13 +13,12 @@ using System.Threading.Tasks;
 
 namespace RateIT.Example.DalMappings
 {
-    //TODO: 
     public static class FluentNHibernateHelper
     {
         public static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
-                .Database(SQLiteConfiguration.Standard.UsingFile(@"C:\firstProject.db"))
+                .Database(SQLiteConfiguration.Standard.UsingFile(@"C:\WorkflowApplication.db"))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>()/*.ExportTo(@"C:\Development\RateITTest\MvcApplication1\Dal\GeneratedORMFiles\")*/)
                 .ExposeConfiguration(BuildSchema)
                 .BuildSessionFactory();
@@ -27,13 +26,9 @@ namespace RateIT.Example.DalMappings
 
         private static void BuildSchema(Configuration config)
         {
-            //config.SetInterceptor(new SqlStatementInterceptor());
-            // delete the existing db on each run
-            if (File.Exists(@"C:\firstProject.db"))
-                File.Delete(@"C:\firstProject.db");
+            if (File.Exists(@"C:\WorkflowApplication.db"))
+                File.Delete(@"C:\WorkflowApplication.db");
 
-            // this NHibernate tool takes a configuration (with mapping info in)
-            // and exports a database schema from it
             new SchemaExport(config)
               .Create(false, true);
         }

@@ -11,8 +11,6 @@ using NHibernate.Linq;
 
 namespace Service
 {
-    //TODO: Stale Data
-    //Make whole class generic
     public enum UserServiceResult {Success, StaleData }
     public class UserService : IEntityService<BL.User>
     {

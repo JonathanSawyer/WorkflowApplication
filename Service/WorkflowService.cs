@@ -11,7 +11,7 @@ namespace Service
 {
     //TODO: Ensure all locking done correctly
     //Add user and date time stamp for approvals.
-    public class WorkflowService<T> : IWorkflowService<T> where T : MyEntity<T>
+    public class WorkflowService<T> : IWorkflowService<T> where T : PayloadEntity<T>
     {
         ISessionFactory _sessionFactory;
         public WorkflowService(ISessionFactory sessionFactory)
@@ -52,7 +52,6 @@ namespace Service
                     if (workflow is DeleteUserWorkflow)
                     {
                         session.Delete(workflow.Owner);
-                        workflow.Owner = null;
                     }
                     else
                     {
