@@ -19,8 +19,8 @@ namespace BL.Workflow
                 throw new UnexpectedWorkflowCondition();
 
             Owner = item;
-            item.Status = EntityStatus.PendingUpdate;
-            item.Workflows.Add(this);
+            Owner.Status = EntityStatus.PendingUpdate;
+            Owner.Workflows.Add(this);
             WorkflowStatus = Workflow.WorkflowStatus.Pending;
             WorkflowType = WorkflowType.Update;
         }

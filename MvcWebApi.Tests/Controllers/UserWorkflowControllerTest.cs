@@ -7,6 +7,7 @@ using Service;
 using BL;
 using System.Collections.Generic;
 using BL.Workflow;
+using System.Linq;
 
 namespace MvcWebApi.Tests.Controllers
 {
@@ -79,22 +80,31 @@ namespace MvcWebApi.Tests.Controllers
         [TestMethod]
         public void Approve_Create()
         {
-            UserWorkflowController controller = new UserWorkflowController(_userService, _userWorkflowService);
-            controller.Approve(1);
-            CreateUserWorkflow userWorkflow1 = (CreateUserWorkflow)_userWorkflowController.Get(1);
-            Assert.AreEqual(WorkflowStatus.Approved, userWorkflow1.WorkflowStatus);
-            Assert.IsNotNull(userWorkflow1.Owner);
-            Assert.AreEqual(userWorkflow1.UserData.Name, userWorkflow1.Owner.Name);
-            Assert.AreEqual(EntityStatus.None, userWorkflow1.Owner.Status);
+            _userWorkflowController.Approve(1);
+            CreateUserWorkflow userWorkflow = (CreateUserWorkflow)_userWorkflowController.Get(1);
+            Assert.AreEqual(WorkflowStatus.Approved, userWorkflow.WorkflowStatus);
+            Assert.IsNotNull(userWorkflow.Owner);
+            Assert.AreEqual(userWorkflow.UserData.Name, userWorkflow.Owner.Name);
+            Assert.AreEqual(EntityStatus.None, userWorkflow.Owner.Status);
         }
 
         [TestMethod]
         public void Approve_Update()
         {
-            UserWorkflowController controller = new UserWorkflowController(_userService, _userWorkflowService);
-            controller.Approve(1);
-            CreateUserWorkflow userWorkflow1 = (CreateUserWorkflow)_userWorkflowController.Get(1);
-            Assert.AreEqual(WorkflowStatus.Approved, userWorkflow1.WorkflowStatus);
+            _userWorkflowController.Approve(1);
+            User user = _userService.Get(1);
+            user.Name = "approve update";
+            _userService.Save(user);
+            user = _userService.Get(1);
+            _userWorkflowController.Approve(user.Workflows.Last().Id);
+
+
+            UpdateUserWorkflow userWorkflow = (UpdateUserWorkflow)_userWorkflowController.Get(user.Workflows.Last().Id);
+            Assert.AreEqual(WorkflowStatus.Approved, userWorkflow.WorkflowStatus);
+            Assert.IsNotNull(userWorkflow.Owner);
+            Assert.AreEqual(userWorkflow.UserData.Name, userWorkflow.Owner.Name);
+            Assert.AreEqual("approve update", userWorkflow.Owner.Name);
+            Assert.AreEqual(EntityStatus.None, userWorkflow.Owner.Status);
         }
 
         [TestMethod]

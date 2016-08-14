@@ -11,10 +11,6 @@ namespace BL.Workflow
         public virtual T Owner { get; set; }
         public EntityWorkflow()
         {}
-        public EntityWorkflow(T item)
-        {
-            Owner = item;
-        }
         public virtual WorkflowType   WorkflowType   { get; set; }
         public virtual WorkflowStatus WorkflowStatus { get; set; }
 

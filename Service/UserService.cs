@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace Service
 {
     //TODO: Stale Data
+    //Make whole class generic
     public enum UserServiceResult {Success, StaleData }
     public class UserService : IEntityService<BL.User>
     {
@@ -27,20 +28,21 @@ namespace Service
             }
         }
 
-        public void Save(BL.User item)
+        public void Save(BL.User user)
         {
             using (var session = _sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
                     EntityWorkflow<BL.User> workflow;
-                    if (item.Id > 0)
+                    if (user.Id > 0)
                     {
-                        workflow = new UpdateUserWorkflow(item);
+                        workflow = new UpdateUserWorkflow(session.Load<User>(user.Id), user);
+                        session.SaveOrUpdate(workflow.Owner);
                     }
                     else
                     {
-                        workflow = new CreateUserWorkflow(item);
+                        workflow = new CreateUserWorkflow(user);
                     }
                     
                     session.Save(workflow);
@@ -73,7 +75,13 @@ namespace Service
         {
             using (var session = _sessionFactory.OpenSession())
             {
-                return session.Get<BL.User>(id);
+                User userAlias = null;
+                BL.Workflow.EntityWorkflow<User> workflowAlias = null;
+                return session.QueryOver(() => userAlias)
+                                  .Left.JoinAlias(() => userAlias.Workflows, () => workflowAlias)
+                                  .Where(() => userAlias.Id == id)
+                                  .List()
+                                  .FirstOrDefault();
             }
         }
     }
