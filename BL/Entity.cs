@@ -15,7 +15,7 @@ namespace BL
     }
     public abstract class Entity<TId>
     {
-        public virtual TId Id { get; protected set; }
+        public virtual TId Id { get; set; }
         protected virtual int Version { get; set; }
 
         public override bool Equals(object obj)

@@ -33,10 +33,19 @@ app.service('userService', function ($http, $q, userWorkflowService)
     }
 });
 app.service('userWorkflowService', function ($http, $q) {
-    this.list = function () {
+    this.list = function ()
+    {
         return $http.get("../api/userworkflow").then(function (response)
         {
             return response;
         });
+    }
+
+    this.approve = function(id)
+    {
+        $http.get("../api/userworkflow/approve/" + id).success(function ()
+        {
+
+        })
     }
 });

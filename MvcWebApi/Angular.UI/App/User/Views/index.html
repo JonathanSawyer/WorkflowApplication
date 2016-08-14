@@ -24,14 +24,17 @@
                 <th>Surname</th>
                 <th>Status</th>
                 <th>Type</th>
+                <th colspan="2"></th>
             </tr>
         </thead>
-        <tbody ng-repeat="workflow in userWorkflows.data">
+        <tbody ng-repeat="workflow in userWorkflows.data track by $index">
             <tr>
                 <td>{{workflow.Name}}</td>
                 <td>{{workflow.Surname}}</td>
                 <td>{{workflow.Status}}</td>
                 <td>{{workflow.Type}}</td>
+                <td>{{approve($index)}}}</td>
+                <td>{{reject($index)}}}</td>
             </tr>
         </tbody>
     </table>

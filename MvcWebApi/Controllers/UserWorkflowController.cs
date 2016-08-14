@@ -46,7 +46,6 @@ namespace MvcWebApi.Controllers
         }
 
         [HttpGet]
-        //[Route("api/userworkflow/approve")]
         public void Approve(int id)
         {
             _workflowService.Approve(id);

@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public class UserData
+    public interface IUserData
+    {
+        UserData UserData { get; set; }
+    }
+    public class UserData 
     {
         public virtual string Name { get; set; }
         public virtual string Surname { get; set; }
@@ -25,7 +29,7 @@ namespace BL
             owner.Name    = Name;
         }
     }
-    public class CreateUserWorkflow : BL.Workflow.Create<User>
+    public class CreateUserWorkflow : BL.Workflow.Create<User>, IUserData
     {
         public virtual UserData UserData { get; set; }
         public CreateUserWorkflow() 
@@ -46,7 +50,7 @@ namespace BL
             base.Approve();
         }
     }
-    public class DeleteUserWorkflow : BL.Workflow.Delete<User>
+    public class DeleteUserWorkflow : BL.Workflow.Delete<User>, IUserData
     {
         public virtual UserData UserData { get; set; }
         public DeleteUserWorkflow() 
@@ -60,7 +64,7 @@ namespace BL
             UserData.Set(user);
         }
     }
-    public class UpdateUserWorkflow : BL.Workflow.Update<User>
+    public class UpdateUserWorkflow : BL.Workflow.Update<User>, IUserData
     {
         public virtual UserData UserData { get; set; }
         public UpdateUserWorkflow() 
