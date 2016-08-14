@@ -83,5 +83,10 @@ namespace BL
             UserData.SetOwner(Owner);
             base.Approve();
         }
+        public override void Reject()
+        {
+            Owner.Status = EntityStatus.None;
+            base.Reject();
+        }
     }
 }

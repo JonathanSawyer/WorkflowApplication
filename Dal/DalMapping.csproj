@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorLogMap.cs" />
     <Compile Include="FluentNHibernateHelper.cs" />
     <Compile Include="UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

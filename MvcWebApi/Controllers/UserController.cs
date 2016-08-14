@@ -32,15 +32,17 @@ namespace MvcWebApi.Controllers
                     Name = x.Name,
                     Surname = x.Surname,
                     Status = Enum.GetName(typeof(EntityStatus), x.Status),
-                    Workflows = from y in x.Workflows
+                    Workflows = from y in x.Workflows.OrderBy(z => z.MakerDateTime)
                                 let userData = (IUserData)y
                                 select new
                                 {
-                                    Id = y.Id,
-                                    Name = userData.UserData.Name,
-                                    Surname = userData.UserData.Surname,
-                                    Type = Enum.GetName(typeof(WorkflowType), y.WorkflowType),
-                                    Status = Enum.GetName(typeof(WorkflowStatus), y.WorkflowStatus)
+                                    Id              = y.Id,
+                                    Name            = userData.UserData.Name,
+                                    Surname         = userData.UserData.Surname,
+                                    Type            = Enum.GetName(typeof(WorkflowType), y.WorkflowType),
+                                    Status          = Enum.GetName(typeof(WorkflowStatus), y.WorkflowStatus),
+                                    MakerDateTime   = y.MakerDateTime,
+                                    ApproverDateTime= y.ApproverDateTime
                                 }
                 }).ToList<dynamic>();
         }

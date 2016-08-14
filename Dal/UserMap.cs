@@ -21,7 +21,7 @@ namespace RateIT.Example.DalMappings
                .KeyColumn("UserId")
                .Inverse()
                .Cascade
-               .All();
+               .SaveUpdate();
        }
     }
 }

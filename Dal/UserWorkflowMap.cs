@@ -18,6 +18,8 @@ namespace RateIT.Example.DalMappings
             DiscriminateSubClassesOnColumn("Type");
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.WorkflowStatus,    "Status");
+            Map(x => x.MakerDateTime);
+            Map(x => x.ApproverDateTime);
             Map(x => x.WorkflowType,      "Type").ReadOnly();
             References(x => x.Owner).Column("UserId");
         }

@@ -6,7 +6,7 @@
 table {
     border-collapse: separate;
     border-spacing: 0 5px;
-    padding: 0px;
+    padding: 1px;
 }
 
 .levelOne {
@@ -14,7 +14,7 @@ table {
     color: white;
 }
 .levelTwo {
-    background-color: #FF8C00;
+    background-color: #00cc66;
     color: black;
 }
 
@@ -30,6 +30,7 @@ tr th:last-child {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
 }
+
 .clickableRow {
     cursor: pointer;
 }
@@ -41,5 +42,5 @@ td, th {
     font-size: 8pt;
 }
 table {
-    padding: 0px;
+    padding: 1px;
 }

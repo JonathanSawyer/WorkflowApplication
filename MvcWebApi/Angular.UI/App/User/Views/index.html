@@ -19,25 +19,34 @@
                 <td><a ng-if="user.Status == 'None'" href="#" ng-click="pageMode.setEdit($index)">edit</a></td>
             </tr>
             <tr data-ng-switch-when="true">
-                <td colspan="5">
+                <td colspan="8">
                     <div class="span9">
                         <div class="pull-left">
-                            <table class="table table-hover table-condensed table-striped">
+                            <table class="table table-striped">
                                 <thead class="levelTwo">
                                     <tr>
+                                        <th colspan="4" style="text-align: center;">Request</th>
+                                        <th colspan="2" style="text-align: center;">Payload</th>
+                                        <th colspan="2"></th>
+                                    </tr>
+                                    <tr>
                                         <th>Type</th>
+                                        <td>Requested On</td>
+                                        <td>Actioned On</td>
+                                        <th>Status</th>
                                         <th>Name</th>
                                         <th>Surname</th>
-                                        <th>Status</th>
                                         <th colspan="2"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr data-ng-repeat="workflow in user.Workflows">
                                         <td>{{workflow.Type}}</td>
+                                        <td>{{workflow.MakerDateTime}}</td>
+                                        <td>{{workflow.ApproverDateTime}}</td>
+                                        <td>{{workflow.Status}}</td>
                                         <td>{{workflow.Name}}</td>
                                         <td>{{workflow.Surname}}</td>
-                                        <td>{{workflow.Status}}</td>
                                         <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="approve(workflow.Id)">approve</a></td>
                                         <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="reject(workflow.Id)">reject</a></td>
                                     </tr>

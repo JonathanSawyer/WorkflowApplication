@@ -62,8 +62,8 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
 
-            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
-            IList<BL.User> result = controller.Get();
+            UserController controller = new UserController(new UserService(_sessionFactory));
+            IEnumerable<dynamic> result = controller.Get();
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count());
             Assert.AreEqual("Some Name", result.ElementAt(0).Name);
@@ -87,7 +87,7 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
 
-            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
+            UserController controller = new UserController(new UserService(_sessionFactory));
 
             User result = controller.Get(user.Id);
 
@@ -101,7 +101,7 @@ namespace MvcWebApi.Tests.Controllers
             {
                 Name = "Some Name"
             };
-            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
+            UserController controller = new UserController(new UserService(_sessionFactory));
             controller.Post(user);
 
             CreateUserWorkflow workflow;
@@ -137,7 +137,7 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
             user.Name = "Updated Value";
-            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
+            UserController controller = new UserController(new UserService(_sessionFactory));
             controller.Post(user);
 
             UpdateUserWorkflow workflow;
@@ -175,7 +175,7 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
 
-            UserControllerr controller = new UserControllerr(new UserService(_sessionFactory));
+            UserController controller = new UserController(new UserService(_sessionFactory));
             UserServiceResult result = controller.Delete(user.Id);
             Assert.AreEqual(UserServiceResult.Success, result);
             

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NHibernate.Linq;
 
 namespace Service
 {
@@ -24,7 +25,9 @@ namespace Service
         {
             using (var session = _sessionFactory.OpenSession())
             {
-                return session.QueryOver<BL.User>().List();
+                return session.Query<User>()
+                                  .Fetch(x => x.Workflows)
+                                  .ToList();
             }
         }
 

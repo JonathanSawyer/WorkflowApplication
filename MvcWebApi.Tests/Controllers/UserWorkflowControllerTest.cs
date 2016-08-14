@@ -58,12 +58,10 @@ namespace MvcWebApi.Tests.Controllers
         [TestMethod]
         public void Get()
         {
-            IList<BL.Workflow.EntityWorkflow<User>> userWorkflows = _userWorkflowController.Get();
-
-            Assert.AreEqual(2,          userWorkflows.Count);
-            Assert.AreEqual(_user1.Name, ((CreateUserWorkflow)userWorkflows[0]).UserData.Name);
-            Assert.AreEqual(_user2.Name, ((CreateUserWorkflow)userWorkflows[1]).UserData.Name);
-
+            dynamic userWorkflows = _userWorkflowController.Get();
+            Assert.AreEqual(2, userWorkflows.Count);
+            Assert.AreEqual(_user1.Name, userWorkflows[0].Name);
+            Assert.AreEqual(_user2.Name, userWorkflows[1].Name);
         }
 
         [TestMethod]
@@ -113,11 +111,38 @@ namespace MvcWebApi.Tests.Controllers
         [TestMethod]
         public void Approve_Delete()
         {
-
+            //_userWorkflowController.Approve(1);
+            //_userService.Delete(1);
+            //User user = _userService.Get(1);
+            //_userWorkflowController.Approve(user.Workflows.Last().Id);
+            //Assert.IsNull(_userService.Get(1));
+            //DeleteUserWorkflow userWorkflow = (DeleteUserWorkflow)_userWorkflowController.Get(1);
+            //Assert.AreEqual(WorkflowStatus.Approved, userWorkflow.WorkflowStatus);
+            //Assert.IsNull(userWorkflow.Owner);
         }
 
         [TestMethod]
-        public void Reject()
+        public void Reject_Create()
+        {
+            _userWorkflowController.Reject(1);
+            CreateUserWorkflow createWorkflow = (CreateUserWorkflow)_userWorkflowService.Get(1);
+            Assert.AreEqual(WorkflowStatus.Rejected, createWorkflow.WorkflowStatus);
+            Assert.IsFalse(_userService.List().Any());
+        }
+        [TestMethod]
+        public void Reject_Update()
+        {
+            _userWorkflowController.Approve(1);
+            _userService.Save(_user1);
+            _userWorkflowController.Reject(_userWorkflowService.List().Last().Id);
+            DeleteUserWorkflow workflow = (DeleteUserWorkflow)_userWorkflowService.List().Last();
+            Assert.AreEqual(WorkflowStatus.Rejected, workflow.WorkflowStatus);
+            User user = _userService.Get(1);
+            Assert.IsNotNull(user);
+            Assert.AreEqual(EntityStatus.None, user.Status);
+        }
+        [TestMethod]
+        public void Reject_Delete()
         {
 
         }

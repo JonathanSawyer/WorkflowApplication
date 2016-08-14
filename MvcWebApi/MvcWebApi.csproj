@@ -193,6 +193,7 @@
     <Content Include="Angular.UI\App\User\Views\index.html" />
     <Content Include="Angular.UI\index.html" />
     <Content Include="Angular.UI\style.css" />
+    <Content Include="Content\bootstrap-combined.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

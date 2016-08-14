@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity.cs" />
+    <Compile Include="ErrorLog.cs" />
     <Compile Include="UserWorkflow.cs" />
     <Compile Include="Workflow\Create.cs" />
     <Compile Include="Workflow\Delete.cs" />

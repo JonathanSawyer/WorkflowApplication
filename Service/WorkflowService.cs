@@ -56,7 +56,15 @@ namespace Service
 
                     workflow.Approve();
 
-                    session.SaveOrUpdate(workflow.Owner);
+                    if (workflow is DeleteUserWorkflow)
+                    {
+                        session.Delete(workflow.Owner);
+                        workflow.Owner = null;
+                    }
+                    else
+                    {
+                        session.SaveOrUpdate(workflow.Owner);
+                    }
                     session.SaveOrUpdate(workflow);
 
                     transaction.Commit();
@@ -72,7 +80,11 @@ namespace Service
                 {
                     BL.Workflow.EntityWorkflow<T> workflow = session.Get<BL.Workflow.EntityWorkflow<T>>(id, LockMode.Upgrade);
                     workflow.Reject();
-                    session.Save(workflow);
+                    
+                    if (workflow.Owner != null)
+                        session.SaveOrUpdate(workflow.Owner);
+
+                    session.SaveOrUpdate(workflow);
                     transaction.Commit();
                 }
             }
