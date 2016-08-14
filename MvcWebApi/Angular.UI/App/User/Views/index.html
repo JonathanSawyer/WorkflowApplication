@@ -1,5 +1,6 @@
 ﻿<div class="span12">
     <span ng-if="users.data.length ==0">Displaying ({{users.data.length}}) users</span>
+    <h1 ng-if="users.data.length > 0">Live Records and History</h1>
     <table ng-if="users.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
@@ -62,8 +63,8 @@
             </tr>
         </tbody>
     </table>
-    <a href="#" ng-click="edit()">new</a>
-
+    <a href="#" ng-if="users.data[users.data.length - 1].edit == undefined" ng-click="edit()">new</a>
+    <h1 ng-if="userWorkflows.data.length > 0">Workflows</h1>
     <span ng-if="userWorkflows.data.length == 0">Displaying ({{userWorkflows.data.length}}) pending workflows</span>
     <table ng-if="userWorkflows.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
@@ -95,4 +96,16 @@
             </tr>
         </tbody>
     </table>
+    <span>This is an indempotent workflow system. Only a single set of changes at a time.</span>
+    <ul>
+        <li>BL\Workflow contains generic classes for an update, create and delete workflow.</li>
+        <li>BL UserWorkflow.cs and User.cs are example payloads</li>
+        <li>The Service Layer is injected into the Web Api Controllers.</li>
+        <li>I use Fluent NHibernate with SQLLite and specifically the discriminator as a factory to load the correct update, create and delete workflow.</li>
+        <li>UI written in Angular and Backend Exposed through WebApi.</li>
+    </ul>
+    <span>Future Improvements.</span>
+    <ul>
+        <li>BL\Workflow contains generic classes for an update, create and delete workflow.</li>
+    </ul>
 </div>

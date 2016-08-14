@@ -31,13 +31,14 @@ namespace MvcWebApi.Controllers
                    let userData = (IUserData)x
                    select new
                    {
-                       Id       = x.Id,
-                       Name     = userData.UserData.Name,
-                       Surname  = userData.UserData.Surname,
-                       Type     = Enum.GetName(typeof(WorkflowType), x.WorkflowType),
-                       Status   = Enum.GetName(typeof(WorkflowStatus), x.WorkflowStatus)
+                       Id               = x.Id,
+                       Name             = userData.UserData.Name,
+                       Surname          = userData.UserData.Surname,
+                       Type             = Enum.GetName(typeof(WorkflowType), x.WorkflowType),
+                       Status           = Enum.GetName(typeof(WorkflowStatus), x.WorkflowStatus),
+                       MakerDateTime    = x.MakerDateTime,
+                       ApproverDateTime = x.ApproverDateTime
                    };
-                   
         }
 
         // GET api/userworkflow/5

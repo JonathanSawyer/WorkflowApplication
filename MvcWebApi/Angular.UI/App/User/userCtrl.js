@@ -48,6 +48,8 @@
     $scope.cancel = function()
     {
         $scope.user.edit = undefined;
+        if($scope.user.Id == 0)
+            $scope.users.data.splice($scope.users.data.length - 1, 1)
     }
 
     $scope.save = function ()
