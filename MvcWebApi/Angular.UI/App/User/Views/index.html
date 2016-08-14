@@ -1,16 +1,18 @@
 ﻿<div ng-show="pageMode.list">
-    <span ng-if="users.length ==0">Displaying ({{users.length}}) users</span>
-    <table ng-if="users.length > 0" class="table table-hover table-condensed table-striped">
+    <span ng-if="users.data.length ==0">Displaying ({{users.data.length}}) users</span>
+    <table ng-if="users.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
                 <th>Name</th>
                 <th>Surname</th>
+                <th>Status</th>
             </tr>
         </thead>
-        <tbody ng-repeat="user in users">
+        <tbody ng-repeat="user in users.data">
             <tr>
                 <td>{{user.Name}}</td>
-                <td>{{user.Surame}}</td>
+                <td>{{user.Surname}}</td>
+                <td>{{user.Status}}</td>
             </tr>
         </tbody>
     </table>
@@ -33,8 +35,8 @@
                 <td>{{workflow.Surname}}</td>
                 <td>{{workflow.Status}}</td>
                 <td>{{workflow.Type}}</td>
-                <td>{{approve($index)}}}</td>
-                <td>{{reject($index)}}}</td>
+                <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="approve($index)">approve</a></td>
+                <td><a ng-if="workflow.Status == 'Pending'" href="#" ng-click="reject($index)">reject</a></td>
             </tr>
         </tbody>
     </table>

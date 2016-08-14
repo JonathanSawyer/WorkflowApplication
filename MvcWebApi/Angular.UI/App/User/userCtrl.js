@@ -35,8 +35,10 @@
 
     $scope.pageMode.setList();
 
-    $scope.save = function () {
-        userService.save($scope.user).then(function (userWorkflows) {
+    $scope.save = function ()
+    {
+        userService.save($scope.user).then(function (userWorkflows)
+        {
             $scope.userWorkflows = userWorkflows;
         });
         $scope.pageMode.setList();
@@ -44,11 +46,14 @@
 
     $scope.approve = function (id)
     {
-        userWorkflowService.approve(id);
+        userWorkflowService.approve($scope.userWorkflows.data[id].Id).then(function (userWorkflows)
+        {
+            $scope.userWorkflows = userWorkflows;
+        });
     };
     $scope.reject = function (id)
     {
-        userWorkflowService.reject(id);
+        //userWorkflowService.reject(id);
     };
 
 

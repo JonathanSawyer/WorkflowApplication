@@ -31,6 +31,7 @@ namespace MvcWebApi.Controllers
                    let userData = (IUserData)x
                    select new
                    {
+                       Id       = x.Id,
                        Name     = userData.UserData.Name,
                        Surname  = userData.UserData.Surname,
                        Type     = Enum.GetName(typeof(WorkflowType), x.WorkflowType),
@@ -46,16 +47,17 @@ namespace MvcWebApi.Controllers
         }
 
         [HttpGet]
-        public void Approve(int id)
+        [Route("api/userworkflow/approve/{workflowId}")]
+        public void Approve(int workflowId)
         {
-            _workflowService.Approve(id);
+            _workflowService.Approve(workflowId);
         }
 
         [HttpGet]
-        //[Route("api/userworkflow/approve")]
-        public void Reject(int id)
+        [Route("api/userworkflow/reject/{workflowId}")]
+        public void Reject(int workflowId)
         {
-            _workflowService.Reject(id);
+            _workflowService.Reject(workflowId);
         }
 
     }

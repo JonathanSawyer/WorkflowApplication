@@ -9,26 +9,40 @@ using System.Web.Http;
 
 namespace MvcWebApi.Controllers
 {
+    //TODO: Chanehe return types to enumerable
     //Generic Entity Controller
-    public class UserControllerr : ApiController
+    public class UserController : ApiController
     {
         IEntityService<BL.User> _userService;
 
-        public UserControllerr(UserService userService)
+        public UserController(UserService userService)
         {
             _userService = userService;
         }
         
         // GET api/user
-        public IList<BL.User> Get()
+        public List<dynamic> Get()
         {
-            return _userService.List();
+            IList<BL.User> users = _userService.List();
+            return users.Select(
+                x => new
+                {
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    Status = Enum.GetName(typeof(EntityStatus), x.Status)
+                }).ToList<dynamic>();
         }
 
         // GET api/user/5
-        public BL.User Get(int id)
+        public dynamic Get(int id)
         {
-            return _userService.Get(id);
+            User user =_userService.Get(id);
+            return new
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                Status = Enum.GetName(typeof(EntityStatus), user.Status)
+            };
         }
 
         // POST api/user

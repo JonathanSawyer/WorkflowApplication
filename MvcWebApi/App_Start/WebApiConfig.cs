@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace MvcWebApi.App_Start
 {
@@ -14,6 +15,8 @@ namespace MvcWebApi.App_Start
     {
         public static void Register(HttpConfiguration config)
         {
+            config.MapHttpAttributeRoutes();
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -35,7 +38,8 @@ namespace MvcWebApi.App_Start
             container.RegisterType<IEntityService<User>, UserService>(new HierarchicalLifetimeManager());
             container.RegisterType<IWorkflowService<User>, WorkflowService<User>>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
-
+            config.Services.Add(typeof(IExceptionLogger), new TraceExceptionLogger(sessionFactory));
+            
         }
     }
 }

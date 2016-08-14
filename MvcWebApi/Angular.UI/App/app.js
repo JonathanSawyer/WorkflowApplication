@@ -5,20 +5,8 @@ app.service('userService', function ($http, $q, userWorkflowService)
 {
     this.list = function ()
     {
-        return $http.get("../api/user").then(function (response)
+        return $http.get("../api/user").then(function (users)
         {
-            var users = [];
-            for(var index = 0; index < response.length; index++)
-            {
-                var user = response[index];
-                users.push
-                    (
-                        {
-                            Name    : user.Name,
-                            Surname : user.Surname,
-                        }
-                    );
-            }
             return users;
         });
     }
@@ -43,9 +31,12 @@ app.service('userWorkflowService', function ($http, $q) {
 
     this.approve = function(id)
     {
-        $http.get("../api/userworkflow/approve/" + id).success(function ()
+        return $http.get("../api/userworkflow/approve/" + id).then(function ()
         {
-
-        })
+            return $http.get("../api/userworkflow").then(function (response) {
+                return response;
+            });
+        });
+        
     }
 });
