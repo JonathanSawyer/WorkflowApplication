@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RateIT.Example.DalMappings
+namespace Workflow.DalMapping
 {
     public class UserMap : ClassMap<User>
     {

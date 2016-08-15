@@ -43,9 +43,10 @@ namespace Service
                 using (var transaction = session.BeginTransaction())
                 {
                     //TODO: Needs to have an upgrade lock
-                    BL.Workflow.EntityWorkflow<T> workflow = session.Query<BL.Workflow.EntityWorkflow<T>>()
-                              .Fetch(x => x.Owner)
-                              .Where(x => x.Id == id).FirstOrDefault();
+                    BL.Workflow.EntityWorkflow<T> workflow = 
+                                                            session.Query<BL.Workflow.EntityWorkflow<T>>()
+                                                                   .Fetch(x => x.Owner)
+                                                                   .Where(x => x.Id == id).FirstOrDefault();
 
                     workflow.Approve();
 

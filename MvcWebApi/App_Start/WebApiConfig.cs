@@ -1,7 +1,7 @@
 ﻿using BL;
 using Microsoft.Practices.Unity;
 using NHibernate;
-using RateIT.Example.DalMappings;
+using Workflow.DalMapping;
 using Service;
 using System;
 using System.Collections.Generic;

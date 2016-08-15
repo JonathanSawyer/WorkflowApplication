@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RateIT.Example.DalMappings
+namespace Workflow.DalMapping
 {
     public static class FluentNHibernateHelper
     {
@@ -19,7 +19,7 @@ namespace RateIT.Example.DalMappings
         {
             return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.UsingFile(@"C:\WorkflowApplication.db"))
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>()/*.ExportTo(@"C:\Development\RateITTest\MvcApplication1\Dal\GeneratedORMFiles\")*/)
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>()/*.ExportTo(@"C:\Development\GeneratedORMFiles\")*/)
                 .ExposeConfiguration(BuildSchema)
                 .BuildSessionFactory();
         }

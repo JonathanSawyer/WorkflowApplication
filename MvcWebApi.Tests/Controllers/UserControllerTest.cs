@@ -9,11 +9,11 @@ using MvcWebApi;
 using MvcWebApi.Controllers;
 using Service;
 using NHibernate;
-using RateIT.Example.DalMappings;
 using BL;
 using BL.Workflow;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Automapping;
+using Workflow.DalMapping;
 
 namespace MvcWebApi.Tests.Controllers
 {

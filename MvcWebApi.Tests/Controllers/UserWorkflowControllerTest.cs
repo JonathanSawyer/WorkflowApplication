@@ -1,13 +1,13 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
-using RateIT.Example.DalMappings;
 using MvcWebApi.Controllers;
 using Service;
 using BL;
 using System.Collections.Generic;
 using BL.Workflow;
 using System.Linq;
+using Workflow.DalMapping;
 
 namespace MvcWebApi.Tests.Controllers
 {

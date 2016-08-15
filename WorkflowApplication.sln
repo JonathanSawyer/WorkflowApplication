@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalMapping", "Dal\DalMappin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libs", "Libs\Libs.csproj", "{7B6CC754-0CD5-4F83-A783-7EA6242C799E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebApi", "MvcWebApi\MvcWebApi.csproj", "{8CD84E3C-5510-4F40-8605-322DFFE10638}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "MvcWebApi\Web.csproj", "{8CD84E3C-5510-4F40-8605-322DFFE10638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebApi.Tests", "MvcWebApi.Tests\MvcWebApi.Tests.csproj", "{9ED22A02-D65F-48F6-9E2C-453774F7F10D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Tests", "MvcWebApi.Tests\Web.Tests.csproj", "{9ED22A02-D65F-48F6-9E2C-453774F7F10D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

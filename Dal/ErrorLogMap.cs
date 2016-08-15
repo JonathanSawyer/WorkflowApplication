@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RateIT.Example.DalMappings
+namespace Workflow.DalMapping
 {
     //TODO: Improve namespaces
     public class ErrorLogMap : ClassMap<ErrorLog>

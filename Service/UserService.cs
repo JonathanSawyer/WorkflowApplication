@@ -1,7 +1,6 @@
 ﻿using BL;
 using BL.Workflow;
 using NHibernate;
-using RateIT.Example.DalMappings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

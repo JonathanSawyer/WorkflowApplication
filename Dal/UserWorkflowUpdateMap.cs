@@ -2,7 +2,7 @@
 using BL.Workflow;
 using FluentNHibernate.Mapping;
 
-namespace RateIT.Example.DalMappings
+namespace Workflow.DalMapping
 {
     public class UserWorkflowUpdateMap : SubclassMap<UserWorkflowUpdate>
     {
