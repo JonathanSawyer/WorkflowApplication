@@ -19,4 +19,4 @@ Changes are only applied to a live record once approved
 
 ## Improvements
 1. There is not currently record level locking on the edit, delete approval and rejection requests
-2. 
+2. Fair amount of boiler plate code in controllers, BL and DalMapping.
