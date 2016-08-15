@@ -65,11 +65,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserWorkflowCreateMap.cs" />
     <Compile Include="ErrorLogMap.cs" />
     <Compile Include="FluentNHibernateHelper.cs" />
     <Compile Include="UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserWorkflowDeleteMap.cs" />
     <Compile Include="UserWorkflowMap.cs" />
+    <Compile Include="UserWorkflowUpdateMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
