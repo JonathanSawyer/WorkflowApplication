@@ -38,11 +38,15 @@ app.service('userWorkflowService', function ($http, $q) {
 
     this.approve = function(id)
     {
-        return $http.get("../api/userworkflow/approve/" + id);
+        return $http.get("../api/userworkflow/approve/" + id).then(function (response) {
+            return response;
+        });
         
     }
     this.reject = function (id)
     {
-        return $http.get("../api/userworkflow/reject/" + id);
+        return $http.get("../api/userworkflow/reject/" + id).then(function (response) {
+            return response;
+        });
     }
 });

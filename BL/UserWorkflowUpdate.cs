@@ -22,7 +22,7 @@ namespace BL
         public override void Approve()
         {
             Owner.Status = EntityStatus.None;
-            UserData.Update(Owner);
+            UserData.SetOwner(Owner);
             base.Approve();
         }
         public override void Reject()

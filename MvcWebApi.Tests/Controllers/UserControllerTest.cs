@@ -172,8 +172,8 @@ namespace MvcWebApi.Tests.Controllers
                 }
             }
 
-            UserServiceResult result = _controller.Delete(user.Id);
-            Assert.AreEqual(UserServiceResult.Success, result);
+            _controller.Delete(user.Id);
+
             
             using (var session = _sessionFactory.OpenSession())
             {
