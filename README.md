@@ -7,6 +7,7 @@ A simple application to show how to create a set of generic workflow classes tha
 2. Angular front end to try things out. This can be accessed by running the MvcWebApi project and navigating to /Angular-UI
 3. The backend is exposed through Web Api 2.0 and is written in C# 4.5
 
+## Workflow Types
 ### Create Workflow
 A create worklow only enters the live data table once its been approved.
 
