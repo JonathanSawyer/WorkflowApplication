@@ -16,3 +16,7 @@ An approved delete workflow sets an archive flag to true on the live table. This
 
 ### Update Workflow
 Changes are only applied to a live record once approved
+
+## Improvements
+1. There is not currently record level locking on the edit, delete approval and rejection requests
+2. 
