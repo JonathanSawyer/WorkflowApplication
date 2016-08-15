@@ -17,12 +17,12 @@ namespace BL
             : base(existing)
         {
             UserData = new BL.UserData();
-            UserData.Set(change);
+            UserData.Update(change);
         }
         public override void Approve()
         {
             Owner.Status = EntityStatus.None;
-            UserData.SetOwner(Owner);
+            UserData.Update(Owner);
             base.Approve();
         }
         public override void Reject()

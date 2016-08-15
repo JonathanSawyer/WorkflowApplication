@@ -14,7 +14,6 @@ namespace BL
         public ErrorLog()
         {
             ErrorDateTime = DateTime.Now;
-        }
-        
+        }   
     }
 }

@@ -12,7 +12,7 @@ namespace BL
         public virtual string Surname { get; set; }
         public UserData()
         { }
-        public void Set(User user)
+        public void Update(User user)
         {
             Surname = user.Surname;
             Name = user.Name;

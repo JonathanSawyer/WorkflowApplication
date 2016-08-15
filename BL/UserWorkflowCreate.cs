@@ -17,7 +17,7 @@ namespace BL
             : base()
         {
             UserData = new BL.UserData();
-            UserData.Set(user);
+            UserData.Update(user);
         }
 
         public override void Approve()
