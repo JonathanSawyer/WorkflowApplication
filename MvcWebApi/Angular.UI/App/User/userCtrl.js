@@ -29,14 +29,15 @@
     {
         if($index == undefined)
         {
-            $scope.user =
+            var user =
             {
                 Id: 0,
                 Name: "",
                 Surname: "",
                 edit : true
             };
-            $scope.users.data.push($scope.user);
+            $scope.editUser = JSON.parse(JSON.stringify(user));
+            $scope.users.data.push(user);
         }
         else
         {
@@ -44,7 +45,7 @@
             {
                 if ($index == index)
                 {
-                    $scope.user = $scope.users.data[index];
+                    $scope.editUser = JSON.parse(JSON.stringify($scope.users.data[index]));
                 }
                 $scope.users.data[index].edit = $index == index ? true : undefined;
             }
@@ -53,19 +54,22 @@
 
     $scope.cancel = function()
     {
-        $scope.user.edit = undefined;
-        if($scope.user.Id == 0)
-            $scope.users.data.splice($scope.users.data.length - 1, 1)
+        $scope.editUser.edit = undefined;
+        if ($scope.editUser.Id == 0)
+            $scope.users.data.splice($scope.users.data.length - 1, 1);
+
+        for (var index = 0; index < $scope.users.data.length; index++) {
+            $scope.users.data[index].edit = undefined;
+        }
     }
 
     $scope.save = function ()
     {
-        $scope.user.edit = undefined;
-
-        if ($scope.user.Id == 0)
+        $scope.editUser.edit = undefined;
+        if ($scope.editUser.Id == 0)
             $scope.users.data.splice($scope.users.data.length - 1, 1);
      
-        userService.save($scope.user).then(function (userWorkflows)
+        userService.save($scope.editUser).then(function (userWorkflows)
         {
             $scope.load();
         });

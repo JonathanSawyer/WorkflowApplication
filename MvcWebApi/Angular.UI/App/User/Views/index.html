@@ -16,8 +16,8 @@
         <tbody data-ng-repeat="user in users.data track by $index" data-ng-switch on="dataCollapse[$index]">
             <tr title="Click to view history.">
                 <td><a href="#" data-ng-click="history($index)">histroy</a></td>
-                <td><span ng-if="!user.edit">{{user.Name}}</span>   <input ng-if="user.edit" id="name" type="text" ng-model="user.Name"></td>
-                <td><span ng-if="!user.edit">{{user.Surname}}</span><input ng-if="user.edit" id="surname" type="text" ng-model="user.Surname"></td>
+                <td><span ng-if="!user.edit">{{user.Name}}</span>   <input ng-if="user.edit" id="name" type="text"    ng-model="editUser.Name"></td>
+                <td><span ng-if="!user.edit">{{user.Surname}}</span><input ng-if="user.edit" id="surname" type="text" ng-model="editUser.Surname"></td>
                 <td>{{user.Status}}</td>
                 <td>
                     <a ng-if="user.Status == 'None' && !user.edit" href="#" ng-click="edit($index)">edit</a>
