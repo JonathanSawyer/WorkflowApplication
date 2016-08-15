@@ -67,8 +67,8 @@ namespace MvcWebApi.Tests.Controllers
         [TestMethod]
         public void GetById()
         {
-            CreateUserWorkflow userWorkflow1 = (CreateUserWorkflow)_userWorkflowController.Get(1);
-            CreateUserWorkflow userWorkflow2 = (CreateUserWorkflow)_userWorkflowController.Get(2);
+            UserWorkflowCreate userWorkflow1 = (UserWorkflowCreate)_userWorkflowController.Get(1);
+            UserWorkflowCreate userWorkflow2 = (UserWorkflowCreate)_userWorkflowController.Get(2);
 
             Assert.AreEqual(_user1.Name, userWorkflow1.UserData.Name);
             Assert.AreEqual(_user2.Name, userWorkflow2.UserData.Name);
@@ -79,7 +79,7 @@ namespace MvcWebApi.Tests.Controllers
         public void Approve_Create()
         {
             _userWorkflowController.Approve(1);
-            CreateUserWorkflow userWorkflow = (CreateUserWorkflow)_userWorkflowController.Get(1);
+            UserWorkflowCreate userWorkflow = (UserWorkflowCreate)_userWorkflowController.Get(1);
             Assert.AreEqual(WorkflowStatus.Approved, userWorkflow.WorkflowStatus);
             Assert.IsNotNull(userWorkflow.Owner);
             Assert.AreEqual(userWorkflow.UserData.Name, userWorkflow.Owner.Name);
@@ -99,7 +99,7 @@ namespace MvcWebApi.Tests.Controllers
             _userWorkflowController.Approve(user.Workflows.Last().Id);
 
 
-            UpdateUserWorkflow userWorkflow = (UpdateUserWorkflow)_userWorkflowController.Get(user.Workflows.Last().Id);
+            UserWorkflowUpdate userWorkflow = (UserWorkflowUpdate)_userWorkflowController.Get(user.Workflows.Last().Id);
             Assert.AreEqual(WorkflowStatus.Approved, userWorkflow.WorkflowStatus);
             Assert.IsNotNull(userWorkflow.Owner);
             Assert.AreEqual(userWorkflow.UserData.Name, userWorkflow.Owner.Name);
@@ -116,7 +116,7 @@ namespace MvcWebApi.Tests.Controllers
             //User user = _userService.Get(1);
             //_userWorkflowController.Approve(user.Workflows.Last().Id);
             //Assert.IsNull(_userService.Get(1));
-            //DeleteUserWorkflow userWorkflow = (DeleteUserWorkflow)_userWorkflowController.Get(1);
+            //UserWorkflowDelete userWorkflow = (UserWorkflowDelete)_userWorkflowController.Get(1);
             //Assert.AreEqual(WorkflowStatus.Approved, userWorkflow.WorkflowStatus);
             //Assert.IsNull(userWorkflow.Owner);
         }
@@ -125,7 +125,7 @@ namespace MvcWebApi.Tests.Controllers
         public void Reject_Create()
         {
             _userWorkflowController.Reject(1);
-            CreateUserWorkflow createWorkflow = (CreateUserWorkflow)_userWorkflowService.Get(1);
+            UserWorkflowCreate createWorkflow = (UserWorkflowCreate)_userWorkflowService.Get(1);
             Assert.AreEqual(WorkflowStatus.Rejected, createWorkflow.WorkflowStatus);
             Assert.IsFalse(_userService.List().Any());
         }
@@ -136,7 +136,7 @@ namespace MvcWebApi.Tests.Controllers
             User user = _userService.Get(1);
             _userService.Save(user);
             _userWorkflowController.Reject(_userWorkflowService.List().Last().Id);
-            UpdateUserWorkflow workflow = (UpdateUserWorkflow)_userWorkflowService.List().Last();
+            UserWorkflowUpdate workflow = (UserWorkflowUpdate)_userWorkflowService.List().Last();
             Assert.AreEqual(WorkflowStatus.Rejected, workflow.WorkflowStatus);
             user = _userService.Get(1);
             Assert.IsNotNull(user);

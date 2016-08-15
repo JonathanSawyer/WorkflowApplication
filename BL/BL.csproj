@@ -58,8 +58,12 @@
   <ItemGroup>
     <Compile Include="Entity.cs" />
     <Compile Include="ErrorLog.cs" />
+    <Compile Include="IUserData.cs" />
     <Compile Include="PayloadEntity.cs" />
-    <Compile Include="UserWorkflow.cs" />
+    <Compile Include="UserData.cs" />
+    <Compile Include="UserWorkflowCreate.cs" />
+    <Compile Include="UserWorkflowDelete.cs" />
+    <Compile Include="UserWorkflowUpdate.cs" />
     <Compile Include="Workflow\Create.cs" />
     <Compile Include="Workflow\Delete.cs" />
     <Compile Include="Workflow\EntityWorkflow.cs" />

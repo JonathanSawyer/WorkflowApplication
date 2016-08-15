@@ -49,7 +49,7 @@ namespace Service
 
                     workflow.Approve();
 
-                    if (workflow is DeleteUserWorkflow)
+                    if (workflow is UserWorkflowDelete)
                     {
                         session.Delete(workflow.Owner);
                     }

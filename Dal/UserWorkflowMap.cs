@@ -25,7 +25,7 @@ namespace RateIT.Example.DalMappings
         }
     }
 
-    public class CreateUserMap : SubclassMap<CreateUserWorkflow>
+    public class CreateUserMap : SubclassMap<UserWorkflowCreate>
     {
         public CreateUserMap()
         {
@@ -38,7 +38,7 @@ namespace RateIT.Example.DalMappings
         }
     }
 
-    public class DeleteUserMap : SubclassMap<DeleteUserWorkflow>
+    public class DeleteUserMap : SubclassMap<UserWorkflowDelete>
     {
         public DeleteUserMap()
         {
@@ -51,7 +51,7 @@ namespace RateIT.Example.DalMappings
         }
     }
 
-    public class UpdateUserMap : SubclassMap<UpdateUserWorkflow>
+    public class UpdateUserMap : SubclassMap<UserWorkflowUpdate>
     {
         public UpdateUserMap()
         {

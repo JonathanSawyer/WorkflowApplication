@@ -38,12 +38,12 @@ namespace Service
                     EntityWorkflow<BL.User> workflow;
                     if (user.Id > 0)
                     {
-                        workflow = new UpdateUserWorkflow(session.Load<User>(user.Id), user);
+                        workflow = new UserWorkflowUpdate(session.Load<User>(user.Id), user);
                         session.SaveOrUpdate(workflow.Owner);
                     }
                     else
                     {
-                        workflow = new CreateUserWorkflow(user);
+                        workflow = new UserWorkflowCreate(user);
                     }
                     
                     session.Save(workflow);
@@ -63,7 +63,7 @@ namespace Service
                     if(user.Status != EntityStatus.None)
                         return UserServiceResult.StaleData;
 
-                    DeleteUserWorkflow deleteWorkflow = new DeleteUserWorkflow(user);
+                    UserWorkflowDelete deleteWorkflow = new UserWorkflowDelete(user);
                     session.Save(deleteWorkflow);
                     session.SaveOrUpdate(user);
                     transaction.Commit();

@@ -102,11 +102,11 @@ namespace MvcWebApi.Tests.Controllers
             };
             _controller.Post(user);
 
-            CreateUserWorkflow workflow;
+            UserWorkflowCreate workflow;
             using (var session = _sessionFactory.OpenSession())
             {
                 User userAlias = null;
-                CreateUserWorkflow workflowAlias = null;
+                UserWorkflowCreate workflowAlias = null;
                 workflow = session.QueryOver(() => workflowAlias)
                                   .Left.JoinAlias(() => workflowAlias.Owner, () => userAlias)
                                   .List()
@@ -137,11 +137,11 @@ namespace MvcWebApi.Tests.Controllers
             user.Name = "Updated Value";
             _controller.Post(user);
 
-            UpdateUserWorkflow workflow;
+            UserWorkflowUpdate workflow;
             using (var session = _sessionFactory.OpenSession())
             {
                 User userAlias = null;
-                UpdateUserWorkflow workflowAlias = null;
+                UserWorkflowUpdate workflowAlias = null;
                 workflow = session.QueryOver(() => workflowAlias)
                                   .Left.JoinAlias(() => workflowAlias.Owner, () => userAlias)
                                   .List()
