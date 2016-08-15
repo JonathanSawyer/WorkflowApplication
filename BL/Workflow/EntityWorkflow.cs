@@ -15,9 +15,8 @@ namespace BL.Workflow
         }
         public virtual WorkflowType   WorkflowType   { get; set; }
         public virtual WorkflowStatus WorkflowStatus { get; set; }
-
-        public virtual DateTime? MakerDateTime    { get; set; }
-        public virtual DateTime? ApproverDateTime { get; set; }
+        public virtual DateTime? MakerDateTime       { get; set; }
+        public virtual DateTime? ApproverDateTime    { get; set; }
 
         public virtual void Approve()
         {

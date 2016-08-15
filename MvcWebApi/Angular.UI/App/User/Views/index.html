@@ -1,9 +1,8 @@
 ﻿<div class="span12">
     <span ng-show="loading"><i class="fa fa-circle-o-notch fa-spin"></i> loading ...</span>
     <br />
-    <span ng-if="users.data.length == 0">Displaying ({{users.data.length}}) user(s)</span>
-    <h1 ng-if="users.data.length > 0">Live Records and History</h1>
-    <span ng-if="users.data.length > 0">Displaying ({{users.data.length}}) live users</span>
+    <h1>Live Records and History</h1>
+    <span>Displaying ({{users.data.length}}) user(s)</span>
     <table ng-if="users.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
@@ -22,6 +21,7 @@
                 <td>{{user.Status}}</td>
                 <td>
                     <a ng-if="user.Status == 'None' && !user.edit" href="#" ng-click="edit($index)">edit</a>
+                    <a ng-if="user.Status == 'None' && !user.edit" href="#" ng-click="delete(user.Id)">delete</a>
                     <a ng-if="user.edit" href="#" ng-click="save()">save</a>
                     <a ng-if="user.edit" href="#" ng-click="cancel()">cancel</a>
                 </td>
@@ -70,8 +70,8 @@
         <span>New User</span>
     </button>
 
-    <h1 ng-if="userWorkflows.data.length > 0">Workflows</h1>
-    <span ng-if="userWorkflows.data.length > 0">Displaying ({{userWorkflows.data.length}}) workflow(s)</span>
+    <h1>Workflows</h1>
+    <span>Displaying ({{userWorkflows.data.length}}) workflow(s)</span>
     <table ng-if="userWorkflows.data.length > 0" class="table table-hover table-condensed table-striped">
         <thead class="levelOne">
             <tr>
@@ -107,7 +107,7 @@
     <br />
     <span>This is an indempotent workflow system. Only a single set of changes at a time.</span>
     <ul>
-        <li>Approved Delete requests hard delete the record from the owner. We audit this in the Workflow (Can be changed to archive if desired).</li>
+        <li>Approved Deletes leave the record in owner table and set an archive flag (records are effectively excluded from all queries through Nhibenrate mapping) .</li>
         <li>Create requests dont end up in owner table until they are approved.</li>
         <li>Update requests dont modify the owner until they are approved.</li>
         <li>BL\Workflow contains generic classes for an update, create and delete workflow.</li>
@@ -118,7 +118,6 @@
     </ul>
     <span>Future Improvements.</span>
     <ul>
-        <li>Delete is not implemented</li>
         <li>Manage multiple users trying to change record (UI as workflow wont allow it but throws a nasty exception).</li>
         <li>Row level (Upgrade Lock)locking of changes.</li>
         <li>Within a business setting you wouldnt have a maker approving their own changes</li>

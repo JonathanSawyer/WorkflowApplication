@@ -24,6 +24,7 @@ namespace MvcWebApi.Controllers
         public List<dynamic> Get()
         {
             IList<BL.User> users = _userService.List();
+
             return users.Select(
                 x => new
                 {
@@ -58,10 +59,10 @@ namespace MvcWebApi.Controllers
             _userService.Save(user);
         }
 
-        // DELETE api/values/5
-        public UserServiceResult Delete(int id)
+        // DELETE api/user/5
+        public void Delete(int userId)
         {
-            return _userService.Delete(id);
+            _userService.Delete(userId);
         }
     }
 }

@@ -11,7 +11,6 @@ using NHibernate.Linq;
 
 namespace Service
 {
-    public enum UserServiceResult {Success, StaleData }
     public class UserService : IEntityService<BL.User>
     {
         ISessionFactory _sessionFactory;
@@ -52,7 +51,7 @@ namespace Service
             }
         }
 
-        public UserServiceResult Delete(int id)
+        public void Delete(int id)
         {
             using (var session = _sessionFactory.OpenSession())
             {
@@ -60,16 +59,12 @@ namespace Service
                 {
                     BL.User user = session.Get<BL.User>(id, LockMode.Upgrade);
 
-                    if(user.Status != EntityStatus.None)
-                        return UserServiceResult.StaleData;
-
                     UserWorkflowDelete deleteWorkflow = new UserWorkflowDelete(user);
                     session.Save(deleteWorkflow);
                     session.SaveOrUpdate(user);
                     transaction.Commit();
                 }
             }
-            return UserServiceResult.Success;
         }
 
         public BL.User Get(int id)

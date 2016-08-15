@@ -17,11 +17,13 @@ namespace RateIT.Example.DalMappings
            Map(x => x.Name);
            Map(x => x.Surname);
            Map(x => x.Status);
+           Map(x => x.Archived, "Archived");
            HasMany(x => x.Workflows)
                .KeyColumn("UserId")
                .Inverse()
                .Cascade
                .SaveUpdate();
+           Where("Archived is not 1");
        }
     }
 }

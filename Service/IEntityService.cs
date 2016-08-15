@@ -10,7 +10,7 @@ namespace Service
     {
         IList<T> List();
         void Save(T item);
-        UserServiceResult Delete(int id);
+        void Delete(int id);
         T Get(int id);
     }
 }

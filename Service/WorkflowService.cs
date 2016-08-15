@@ -49,16 +49,8 @@ namespace Service
 
                     workflow.Approve();
 
-                    if (workflow is UserWorkflowDelete)
-                    {
-                        session.Delete(workflow.Owner);
-                    }
-                    else
-                    {
-                        session.SaveOrUpdate(workflow.Owner);
-                    }
+                    session.SaveOrUpdate(workflow.Owner);
                     session.SaveOrUpdate(workflow);
-
                     transaction.Commit();
                 }
             }

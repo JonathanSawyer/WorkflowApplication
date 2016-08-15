@@ -19,5 +19,16 @@ namespace BL
             UserData = new BL.UserData();
             UserData.Update(user);
         }
+        public override void Approve()
+        {
+            Owner.Status    = EntityStatus.None;
+            Owner.Archived  = true;
+            base.Approve();
+        }
+        public override void Reject()
+        {
+            Owner.Status = EntityStatus.None;
+            base.Reject();
+        }
     }
 }

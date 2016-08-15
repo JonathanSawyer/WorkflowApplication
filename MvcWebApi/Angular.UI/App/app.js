@@ -19,6 +19,13 @@ app.service('userService', function ($http, $q, userWorkflowService)
             });
         });
     }
+
+    this.delete = function(userId)
+    {
+        return $http.delete("../api/user", { params: { userId: userId } }).then(function (response) {
+            return response;
+        });
+    }
 });
 app.service('userWorkflowService', function ($http, $q) {
     this.list = function ()

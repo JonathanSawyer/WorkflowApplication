@@ -67,12 +67,16 @@
      
         userService.save($scope.user).then(function (userWorkflows)
         {
-            $scope.userWorkflows = userWorkflows;
-            userService.list().then(function (users) {
-                $scope.users = users;
-            });
+            $scope.load();
         });
     };
+
+    $scope.delete = function(userId)
+    {
+        userService.delete(userId).then(function () {
+            $scope.load();
+        });
+    }
 
     $scope.approve = function (id)
     {
