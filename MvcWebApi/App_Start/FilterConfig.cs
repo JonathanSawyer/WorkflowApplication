@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace MvcWebApi.App_Start
+namespace IdemWokflow.Web.App_Start
 {
     public class FilterConfig
     {

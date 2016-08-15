@@ -1,15 +1,15 @@
-﻿using BL;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 using NHibernate;
-using Workflow.DalMapping;
-using Service;
+using IdemWokflow.Dal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
+using IdemWokflow.Bll;
+using IdemWokflow.Service;
 
-namespace MvcWebApi.App_Start
+namespace IdemWokflow.Web.App_Start
 {
     public static class WebApiConfig
     {

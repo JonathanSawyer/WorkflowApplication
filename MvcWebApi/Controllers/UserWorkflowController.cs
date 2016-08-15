@@ -1,6 +1,6 @@
-﻿using BL;
-using BL.Workflow;
-using Service;
+﻿using IdemWokflow.Bll;
+using IdemWokflow.Bll.Workflow;
+using IdemWokflow.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +8,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace MvcWebApi.Controllers
+namespace IdemWokflow.Web.Controllers
 {
     //TODO: Generic Workflow Controller
     public class UserWorkflowController : ApiController
     {
-        IEntityService<BL.User>     _userService;
-        IWorkflowService<BL.User>   _workflowService;
+        IEntityService<User>     _userService;
+        IWorkflowService<User>   _workflowService;
 
-        public UserWorkflowController(IEntityService<BL.User> userService, 
-                                      IWorkflowService<BL.User> workflowService)
+        public UserWorkflowController(IEntityService<User> userService, 
+                                      IWorkflowService<User> workflowService)
         {
             _workflowService = workflowService;
             _userService     = userService;
@@ -26,7 +26,7 @@ namespace MvcWebApi.Controllers
         // GET api/userworkflow
         public IEnumerable<object> Get()
         {
-            IList<BL.Workflow.EntityWorkflow<User>> workflows = _workflowService.List();
+            IList<EntityWorkflow<User>> workflows = _workflowService.List();
             return from x in workflows
                    let userData = (IUserData)x
                    select new
@@ -42,7 +42,7 @@ namespace MvcWebApi.Controllers
         }
 
         // GET api/userworkflow/5
-        public BL.Workflow.EntityWorkflow<User> Get(int id)
+        public EntityWorkflow<User> Get(int id)
         {
             return _workflowService.Get(id);
         }

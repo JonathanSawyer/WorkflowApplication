@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
 
-namespace MvcWebApi.App_Start
+namespace IdemWokflow.Web.App_Start
 {
     public class UnityResolver : IDependencyResolver
     {

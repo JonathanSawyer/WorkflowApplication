@@ -1,6 +1,6 @@
-﻿using BL;
-using BL.Workflow;
-using Service;
+﻿using IdemWokflow.Bll;
+using IdemWokflow.Bll.Workflow;
+using IdemWokflow.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +8,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace MvcWebApi.Controllers
+namespace IdemWokflow.Web.Controllers
 {
     //Generic Entity Controller
     public class UserController : ApiController
     {
-        IEntityService<BL.User> _userService;
+        IEntityService<User> _userService;
 
         public UserController(UserService userService)
         {
@@ -23,7 +23,7 @@ namespace MvcWebApi.Controllers
         // GET api/user
         public List<dynamic> Get()
         {
-            IList<BL.User> users = _userService.List();
+            IList<User> users = _userService.List();
 
             return users.Select(
                 x => new
@@ -54,7 +54,7 @@ namespace MvcWebApi.Controllers
         }
 
         // POST api/user
-        public void Post([FromBody]BL.User user)
+        public void Post([FromBody]User user)
         {
             _userService.Save(user);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BL.Workflow
+namespace IdemWokflow.Bll.Workflow
 {
     public class UnexpectedWorkflowCondition : Exception
     {

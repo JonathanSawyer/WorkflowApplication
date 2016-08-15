@@ -1,8 +1,8 @@
-﻿using BL;
-using BL.Workflow;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
+using IdemWokflow.Bll;
+using IdemWokflow.Bll.Workflow;
 
-namespace Workflow.DalMapping
+namespace IdemWokflow.Dal
 {
     public class UserWorkflowUpdateMap : SubclassMap<UserWorkflowUpdate>
     {

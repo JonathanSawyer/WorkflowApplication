@@ -1,15 +1,15 @@
-﻿using BL;
-using BL.Workflow;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
+using IdemWokflow.Bll;
+using IdemWokflow.Bll.Workflow;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Workflow.DalMapping
+namespace IdemWokflow.Dal
 {
-    public class UserBaseClassMap : ClassMap<EntityWorkflow<BL.User>>
+    public class UserBaseClassMap : ClassMap<EntityWorkflow<User>>
     {
         public UserBaseClassMap()
         {

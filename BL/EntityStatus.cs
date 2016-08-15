@@ -1,4 +1,4 @@
-﻿namespace BL
+﻿namespace IdemWokflow.Bll
 {
     public enum EntityStatus
     {

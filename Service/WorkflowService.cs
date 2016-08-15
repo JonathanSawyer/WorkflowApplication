@@ -1,16 +1,16 @@
-﻿using BL;
-using NHibernate;
+﻿using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NHibernate.Linq;
+using IdemWokflow.Bll;
+using IdemWokflow.Bll.Workflow;
 
-namespace Service
+namespace IdemWokflow.Service
 {
     //TODO: Ensure all locking done correctly
-    //Add user and date time stamp for approvals.
     public class WorkflowService<T> : IWorkflowService<T> where T : PayloadEntity<T>
     {
         ISessionFactory _sessionFactory;
@@ -18,21 +18,21 @@ namespace Service
         {
             _sessionFactory = sessionFactory;
         }
-        public BL.Workflow.EntityWorkflow<T> Get(int id)
+        public EntityWorkflow<T> Get(int id)
         {
             using (var session = _sessionFactory.OpenSession())
             {
-                return session.Query<BL.Workflow.EntityWorkflow<T>>()
+                return session.Query<EntityWorkflow<T>>()
                               .Fetch(x => x.Owner)
                               .Where(x =>x.Id == id).FirstOrDefault();
             }
         }
 
-        public IList<BL.Workflow.EntityWorkflow<T>> List()
+        public IList<EntityWorkflow<T>> List()
         {
             using (var session = _sessionFactory.OpenSession())
             {
-                return session.QueryOver<BL.Workflow.EntityWorkflow<T>>().List();
+                return session.QueryOver<EntityWorkflow<T>>().List();
             }
         }
 
@@ -43,8 +43,8 @@ namespace Service
                 using (var transaction = session.BeginTransaction())
                 {
                     //TODO: Needs to have an upgrade lock
-                    BL.Workflow.EntityWorkflow<T> workflow = 
-                                                            session.Query<BL.Workflow.EntityWorkflow<T>>()
+                    EntityWorkflow<T> workflow = 
+                                                            session.Query<EntityWorkflow<T>>()
                                                                    .Fetch(x => x.Owner)
                                                                    .Where(x => x.Id == id).FirstOrDefault();
 
@@ -63,7 +63,7 @@ namespace Service
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    BL.Workflow.EntityWorkflow<T> workflow = session.Get<BL.Workflow.EntityWorkflow<T>>(id, LockMode.Upgrade);
+                    EntityWorkflow<T> workflow = session.Get<EntityWorkflow<T>>(id, LockMode.Upgrade);
                     workflow.Reject();
                     
                     if (workflow.Owner != null)

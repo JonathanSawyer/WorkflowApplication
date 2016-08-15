@@ -1,22 +1,23 @@
-﻿using System;
+﻿using IdemWokflow.Bll.Workflow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace IdemWokflow.Bll
 {
-    public class UserWorkflowCreate : BL.Workflow.Create<User>, IUserData
+    public class UserWorkflowCreate : Create<User>, IUserData
     {
         public virtual UserData UserData { get; set; }
         public UserWorkflowCreate()
         {
-            UserData = new BL.UserData();
+            UserData = new UserData();
         }
         public UserWorkflowCreate(User user)
             : base()
         {
-            UserData = new BL.UserData();
+            UserData = new UserData();
             UserData.Update(user);
         }
 

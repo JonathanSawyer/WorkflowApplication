@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
-using MvcWebApi.Controllers;
-using Service;
-using BL;
+using IdemWokflow.Web.Controllers;
+using IdemWokflow.Service;
 using System.Collections.Generic;
-using BL.Workflow;
 using System.Linq;
-using Workflow.DalMapping;
+using IdemWokflow.Dal;
+using IdemWokflow.Bll;
+using IdemWokflow.Bll.Workflow;
 
-namespace MvcWebApi.Tests.Controllers
+namespace IdemWokflow.Web.Tests.Controllers
 {
     [TestClass]
     public class UserWorkflowControllerTest
@@ -35,11 +35,11 @@ namespace MvcWebApi.Tests.Controllers
             _userWorkflowService = new WorkflowService<User>(_sessionFactory);
             _userWorkflowController = new UserWorkflowController(_userService, _userWorkflowService);
 
-            _user1 = new BL.User()
+            _user1 = new User()
             {
                 Name = "Some user"
             };
-            _user2 = new BL.User()
+            _user2 = new User()
             {
                 Name = "Some other user"
             };

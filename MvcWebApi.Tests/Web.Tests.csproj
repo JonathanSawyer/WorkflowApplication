@@ -9,8 +9,8 @@
     <ProjectGuid>{9ED22A02-D65F-48F6-9E2C-453774F7F10D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcWebApi.Tests</RootNamespace>
-    <AssemblyName>MvcWebApi.Tests</AssemblyName>
+    <RootNamespace>IdemWokflow.Web.Tests</RootNamespace>
+    <AssemblyName>IdemWokflow.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -162,13 +162,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj">
+    <ProjectReference Include="..\BL\Bll.csproj">
       <Project>{e25dbed6-5436-4658-a63a-1840116c2109}</Project>
-      <Name>BL</Name>
+      <Name>Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dal\DalMapping.csproj">
+    <ProjectReference Include="..\Dal\Dal.csproj">
       <Project>{35fece34-26df-4abb-a0ca-5f991ada2667}</Project>
-      <Name>DalMapping</Name>
+      <Name>Dal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Libs\Libs.csproj">
       <Project>{7b6cc754-0cd5-4f83-a783-7ea6242c799e}</Project>

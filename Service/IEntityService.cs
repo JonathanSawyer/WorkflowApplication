@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service
+namespace IdemWokflow.Service
 {
     public interface IEntityService<T> //add constraint
     {

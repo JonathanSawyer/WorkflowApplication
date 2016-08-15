@@ -7,8 +7,8 @@
     <ProjectGuid>{E25DBED6-5436-4658-A63A-1840116C2109}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BL</RootNamespace>
-    <AssemblyName>BL</AssemblyName>
+    <RootNamespace>IdemWokflow.Bll</RootNamespace>
+    <AssemblyName>IdemWokflow.Bll</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

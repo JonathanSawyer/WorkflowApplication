@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Workflow
+namespace IdemWokflow.Bll.Workflow
 {
     public enum WorkflowType
     {

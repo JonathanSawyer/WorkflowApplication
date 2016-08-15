@@ -1,13 +1,12 @@
-﻿using BL;
-using BL.Workflow;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
+using IdemWokflow.Bll;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Workflow.DalMapping
+namespace IdemWokflow.Dal
 {
     public class UserMap : ClassMap<User>
     {

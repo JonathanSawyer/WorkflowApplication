@@ -1,22 +1,23 @@
-﻿using System;
+﻿using IdemWokflow.Bll.Workflow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace IdemWokflow.Bll
 {
-    public class UserWorkflowUpdate : BL.Workflow.Update<User>, IUserData
+    public class UserWorkflowUpdate : Update<User>, IUserData
     {
         public virtual UserData UserData { get; set; }
         public UserWorkflowUpdate()
         {
-            UserData = new BL.UserData();
+            UserData = new UserData();
         }
         public UserWorkflowUpdate(User existing, User change)
             : base(existing)
         {
-            UserData = new BL.UserData();
+            UserData = new UserData();
             UserData.Update(change);
         }
         public override void Approve()

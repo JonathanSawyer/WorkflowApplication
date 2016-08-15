@@ -7,8 +7,8 @@
     <ProjectGuid>{35B66375-2075-405B-8E94-C27273D08D25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Service</RootNamespace>
-    <AssemblyName>Service</AssemblyName>
+    <RootNamespace>IdemWokflow.Service</RootNamespace>
+    <AssemblyName>IdemWokflow.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -58,13 +58,13 @@
     <Compile Include="WorkflowService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj">
+    <ProjectReference Include="..\BL\Bll.csproj">
       <Project>{e25dbed6-5436-4658-a63a-1840116c2109}</Project>
-      <Name>BL</Name>
+      <Name>Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dal\DalMapping.csproj">
+    <ProjectReference Include="..\Dal\Dal.csproj">
       <Project>{35fece34-26df-4abb-a0ca-5f991ada2667}</Project>
-      <Name>DalMapping</Name>
+      <Name>Dal</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

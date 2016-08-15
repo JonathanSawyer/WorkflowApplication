@@ -1,4 +1,4 @@
-﻿using BL;
+﻿using IdemWokflow.Bll;
 using NHibernate;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http.ExceptionHandling;
 
-namespace MvcWebApi.App_Start
+namespace IdemWokflow.Web.App_Start
 {
     public class TraceExceptionLogger : ExceptionLogger
     {

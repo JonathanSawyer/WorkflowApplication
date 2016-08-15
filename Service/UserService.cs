@@ -1,23 +1,23 @@
-﻿using BL;
-using BL.Workflow;
-using NHibernate;
+﻿using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NHibernate.Linq;
+using IdemWokflow.Bll;
+using IdemWokflow.Bll.Workflow;
 
-namespace Service
+namespace IdemWokflow.Service
 {
-    public class UserService : IEntityService<BL.User>
+    public class UserService : IEntityService<User>
     {
         ISessionFactory _sessionFactory;
         public UserService(ISessionFactory sessionFactory)
         {
             _sessionFactory = sessionFactory;
         }
-        public IList<BL.User> List()
+        public IList<User> List()
         {
             using (var session = _sessionFactory.OpenSession())
             {
@@ -27,13 +27,13 @@ namespace Service
             }
         }
 
-        public void Save(BL.User user)
+        public void Save(User user)
         {
             using (var session = _sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    EntityWorkflow<BL.User> workflow;
+                    EntityWorkflow<User> workflow;
                     if (user.Id > 0)
                     {
                         workflow = new UserWorkflowUpdate(session.Load<User>(user.Id), user);
@@ -56,7 +56,7 @@ namespace Service
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    BL.User user = session.Get<BL.User>(id, LockMode.Upgrade);
+                    User user = session.Get<User>(id, LockMode.Upgrade);
 
                     UserWorkflowDelete deleteWorkflow = new UserWorkflowDelete(user);
                     session.Save(deleteWorkflow);
@@ -66,12 +66,12 @@ namespace Service
             }
         }
 
-        public BL.User Get(int id)
+        public User Get(int id)
         {
             using (var session = _sessionFactory.OpenSession())
             {
                 User userAlias = null;
-                BL.Workflow.EntityWorkflow<User> workflowAlias = null;
+                EntityWorkflow<User> workflowAlias = null;
                 return session.QueryOver(() => userAlias)
                                   .Left.JoinAlias(() => userAlias.Workflows, () => workflowAlias)
                                   .Where(() => userAlias.Id == id)

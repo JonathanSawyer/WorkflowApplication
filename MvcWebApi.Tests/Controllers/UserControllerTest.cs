@@ -5,17 +5,17 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MvcWebApi;
-using MvcWebApi.Controllers;
-using Service;
+using IdemWokflow.Web;
+using IdemWokflow.Web.Controllers;
+using IdemWokflow.Service;
 using NHibernate;
-using BL;
-using BL.Workflow;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Automapping;
-using Workflow.DalMapping;
+using IdemWokflow.Dal;
+using IdemWokflow.Bll.Workflow;
+using IdemWokflow.Bll;
 
-namespace MvcWebApi.Tests.Controllers
+namespace IdemWokflow.Web.Tests.Controllers
 {
     [TestClass]
     public class UserControllerTest

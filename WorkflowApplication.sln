@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{E25DBED6-5436-4658-A63A-1840116C2109}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bll", "BL\Bll.csproj", "{E25DBED6-5436-4658-A63A-1840116C2109}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{35B66375-2075-405B-8E94-C27273D08D25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalMapping", "Dal\DalMapping.csproj", "{35FECE34-26DF-4ABB-A0CA-5F991ADA2667}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{35FECE34-26DF-4ABB-A0CA-5F991ADA2667}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libs", "Libs\Libs.csproj", "{7B6CC754-0CD5-4F83-A783-7EA6242C799E}"
 EndProject

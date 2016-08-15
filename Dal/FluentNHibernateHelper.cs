@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Workflow.DalMapping
+namespace IdemWokflow.Dal
 {
     public static class FluentNHibernateHelper
     {
