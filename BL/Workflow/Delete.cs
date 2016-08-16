@@ -15,7 +15,7 @@ namespace IdemWokflow.Bll.Workflow
             : this()
         {
             if(item.Status != EntityStatus.None)
-                throw new UnexpectedWorkflowCondition("Delete request failed because record is already in pending delete state.");
+                throw new UnexpectedWorkflowCondition("Delete request failed because record is already in pending state.");
             
             Owner = item;
             item.Status = EntityStatus.PendingDelete;

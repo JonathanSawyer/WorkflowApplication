@@ -16,7 +16,7 @@ namespace IdemWokflow.Bll.Workflow
             : this()
         {
             if (item.Status != EntityStatus.None)
-                throw new UnexpectedWorkflowCondition("Update request failed because record is already in pending update state.");
+                throw new UnexpectedWorkflowCondition("Update request failed because record is already in pending state.");
 
             Owner = item;
             Owner.Status = EntityStatus.PendingUpdate;
