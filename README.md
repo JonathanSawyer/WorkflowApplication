@@ -11,10 +11,10 @@ A deterministic workflow application that uses a set of generic workflow classes
 
 ## Workflow Types
 ### Create Workflow
-On approval creates a record in the live record.
+On approval creates a live record.
 
 ### Delete Workflow
-On approval sets an Archive flag on the live record.
+On approval sets an archive flag on the live record.
 
 ### Update Workflow
 On approval updates the live record
