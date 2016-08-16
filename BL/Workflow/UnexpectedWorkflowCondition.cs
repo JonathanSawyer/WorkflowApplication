@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace IdemWokflow.Bll.Workflow
 {
     public class UnexpectedWorkflowCondition : Exception
     {
+        //public UnexpectedWorkflowCondition(){}
+        public UnexpectedWorkflowCondition(string message) : base(message)
+        {
+        }
     }
 }

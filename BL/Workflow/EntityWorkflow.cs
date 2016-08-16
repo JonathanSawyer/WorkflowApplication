@@ -26,7 +26,7 @@ namespace IdemWokflow.Bll.Workflow
                 ApproverDateTime = DateTime.Now;
             }
             else
-                throw new UnexpectedWorkflowCondition();
+                throw new UnexpectedWorkflowCondition("Approval failed because workflow is no longer pending.");
         }
 
         public virtual void Reject()
@@ -37,7 +37,7 @@ namespace IdemWokflow.Bll.Workflow
                 ApproverDateTime = DateTime.Now;
             }
             else
-                throw new UnexpectedWorkflowCondition();
+                throw new UnexpectedWorkflowCondition("Reject failed because workflow is no longer pending.");
         }
     }
 }
