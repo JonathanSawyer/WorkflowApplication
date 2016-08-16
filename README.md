@@ -1,21 +1,23 @@
 # Idempotent Workflow Application
 
-A simple application to show how to create a set of generic workflow classes that support a system that only allows for a single request at a time for changes to a live or active record. There are three types of changes namely Create, Delete and Update. When changes are requested they are never applied to the live record until approved. 
+A deterministic workflow application that uses a set of generic workflow classes that support the creating, updatating and deleting information. When changes are requested they are never applied to the live record until approved. Workflows once submitted cant be modified and can only be approved or rejected. Addtional workflow requests cant be submitted to a live record until pending workflows are approved or rejected.
 
 ## Stack
-1. SqlLite with flient NHibernate, by default the system is setup to generate the database.
-2. Angular front end to try things out. This can be accessed by running the MvcWebApi project and navigating to /Angular-UI
-3. The backend is exposed through Web Api 2.0 and is written in C# 4.5
+1. SqlLite 
+2. Fluent NHibernate
+2. Angular MvcWebApi/Angular-UI
+3. Web Api 2.0 
+4. C# 4.5
 
 ## Workflow Types
 ### Create Workflow
-A create worklow only enters the live data table once its been approved.
+On approval creates a record in the live record.
 
 ### Delete Workflow
-An approved delete workflow sets an archive flag to true on the live table. This can be modified by relaxing the foreign key constrains and thereby completly remove the record. The history will still be stored in the associated workflow table.
+On approval sets an Archive flag on the live record.
 
 ### Update Workflow
-Changes are only applied to a live record once approved
+On approval updates the live record
 
 ## Improvements
 1. No record level locking on the edit, delete approval and rejection requests
