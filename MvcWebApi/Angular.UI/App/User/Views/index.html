@@ -107,14 +107,8 @@
     <br />
     <span>This is an indempotent workflow system. Only a single set of changes at a time.</span>
     <ul>
-        <li>Approved Deletes leave the record in owner table and set an archive flag (records are effectively excluded from all queries through Nhibenrate mapping) .</li>
-        <li>Create requests dont end up in owner table until they are approved.</li>
-        <li>Update requests dont modify the owner until they are approved.</li>
-        <li>BL\Workflow contains generic classes for an update, create and delete workflow.</li>
-        <li>BL UserWorkflow.cs and User.cs are example payloads</li>
-        <li>The Service Layer is injected into the Web Api Controllers.</li>
-        <li>I use Fluent NHibernate with SQLLite and specifically the discriminator as a factory to load the correct update, create and delete workflow.</li>
-        <li>UI written in Angular and Backend Exposed through WebApi.</li>
+        <li>All request only update live information on approval.</li>
+        <li>Approved delete request set an Archive flag on live record.</li>
     </ul>
     <span>Future Improvements.</span>
     <ul>

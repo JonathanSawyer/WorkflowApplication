@@ -43,10 +43,9 @@ namespace IdemWokflow.Service
                 using (var transaction = session.BeginTransaction())
                 {
                     //TODO: Needs to have an upgrade lock
-                    EntityWorkflow<T> workflow = 
-                                                            session.Query<EntityWorkflow<T>>()
-                                                                   .Fetch(x => x.Owner)
-                                                                   .Where(x => x.Id == id).FirstOrDefault();
+                    EntityWorkflow<T> workflow = session.Query<EntityWorkflow<T>>()
+                                                        .Fetch(x => x.Owner)
+                                                        .Where(x => x.Id == id).FirstOrDefault();
 
                     workflow.Approve();
 
