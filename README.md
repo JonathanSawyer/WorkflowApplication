@@ -19,9 +19,10 @@ On approval sets an archive flag on the live record.
 ### Update Workflow
 On approval updates the live record
 
+## User Interface
+![User Interface](https://github.com/JonathanSawyer/WorkflowApplication/blob/master/Angular-UI.png)
+
 ## Improvements
 1. No record level locking on the edit, delete approval and rejection requests
 2. Fair amount of boiler plate code in controllers, BL and DalMapping.
-
-## User Interface
-![User Interface](https://github.com/JonathanSawyer/WorkflowApplication/blob/master/Angular-UI.png)
+3. Expansion of Unit Tests
