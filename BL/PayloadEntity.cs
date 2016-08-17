@@ -12,6 +12,7 @@ namespace IdemWokflow.Bll
         public virtual EntityStatus Status { get; set; }
 
         public virtual IList<EntityWorkflow<Entity>> Workflows { get; set; }
+        
         public virtual bool Archived { get; set; }
     }
 }
