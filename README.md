@@ -1,6 +1,6 @@
-# Deterministic Workflow Application
+# Workflow Application
 
-A deterministic workflow application that uses a set of generic workflow classes to support creating, updating and deleting information. When changes are requested they are never applied to the live record until approved. Workflows once submitted cant be modified and can only be approved or rejected. Addtional workflow requests can not be submitted to a live record until pending workflows (UPDATE, DELETE) are approved or rejected.
+A workflow application that uses a set of generic workflow classes to support creating, updating and deleting information. When changes are requested they are never applied to the live record until approved. Workflows once submitted cant be modified and can only be approved or rejected. Addtional workflow requests can not be submitted to a live record until pending workflows (UPDATE, DELETE) are approved or rejected.
 
 ## Stack
 1. SqlLite 
